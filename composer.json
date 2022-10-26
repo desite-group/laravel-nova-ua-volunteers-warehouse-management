@@ -1,0 +1,16 @@
+{
+    "name": "desite-group/laravel-warehouse-management",
+    "description": "A simple package for an online store, for managing orders and warehouse",
+    "autoload": {
+        "psr-4": {
+            "DesiteGroup\\LaravelWarehouseManagement\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RomanZhyla",
+            "email": "roman@desite.group"
+        }
+    ],
+    "require": {}
+}
