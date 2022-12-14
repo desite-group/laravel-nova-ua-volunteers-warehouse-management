@@ -4,7 +4,10 @@ namespace DesiteGroup\LaravelWarehouseManagement;
 
 use DesiteGroup\LaravelWarehouseManagement\Models\Category;
 use DesiteGroup\LaravelWarehouseManagement\Nova\Category as NovaCategory;
-use Illuminate\Support\Facades\Gate;
+use DesiteGroup\LaravelWarehouseManagement\Nova\Product as NovaProduct;
+use DesiteGroup\LaravelWarehouseManagement\Nova\Counteragent as NovaCounteragent;
+use DesiteGroup\LaravelWarehouseManagement\Nova\Application as NovaApplication;
+use DesiteGroup\LaravelWarehouseManagement\Nova\Act as NovaAct;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 
@@ -18,15 +21,15 @@ class WarehouseServiceProvider extends ServiceProvider
             ], 'migrations');
         }
 
-        Nova::resourcesIn(__DIR__.'/Nova');
-
         $this->app->booted(function () {
 
             Nova::resources([
                 NovaCategory::class,
+                NovaProduct::class,
+                NovaCounteragent::class,
+                NovaApplication::class,
+                NovaAct::class,
             ]);
-
-            $this->app->bind(Category::class, Category::class);
         });
     }
 }

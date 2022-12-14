@@ -13,9 +13,9 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
-use \DesiteGroup\LaravelWarehouseManagement\Models\Category as CategoryModel;
+use \DesiteGroup\LaravelWarehouseManagement\Models\Product as ProductModel;
 
-class Category extends WarehouseResource
+class Product extends WarehouseResource
 {
     use HasSortableRows;
 
@@ -24,7 +24,7 @@ class Category extends WarehouseResource
      *
      * @var string
      */
-    public static $model = CategoryModel::class;
+    public static $model = ProductModel::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -56,7 +56,7 @@ class Category extends WarehouseResource
      */
     public static function label()
     {
-        return __('Category');
+        return __('Product');
     }
 
     /**

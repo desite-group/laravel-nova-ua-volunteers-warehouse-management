@@ -35,7 +35,6 @@ abstract class WarehouseResource extends Resource
      */
     public static function newModel()
     {
-
         $model = static::$model;
         return app($model);
     }
