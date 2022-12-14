@@ -12,5 +12,12 @@
             "email": "roman@desite.group"
         }
     ],
-    "require": {}
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DesiteGroup\\LaravelWarehouseManagement\\WarehouseServiceProvider"
+            ]
+        }
+    }
 }
