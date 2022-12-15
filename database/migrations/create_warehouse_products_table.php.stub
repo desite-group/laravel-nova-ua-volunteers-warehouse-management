@@ -26,6 +26,7 @@ class CreateWarehouseProductsTable extends Migration
 
             $table->text('internal_comment')->nullable();
 
+            $table->integer('sort_order');
             $table->timestamps();
             $table->softDeletes();
         });

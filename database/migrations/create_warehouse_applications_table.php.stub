@@ -30,6 +30,7 @@ class CreateWarehouseApplicationsTable extends Migration
             $table->enum('type', ['organization', 'military_personnel', 'personal'])->nullable();
             $table->enum('needs', ['military', 'injured', 'civilian_displaced'])->nullable();
 
+            $table->integer('sort_order');
             $table->timestamps();
             $table->softDeletes();
         });
