@@ -1,6 +1,6 @@
 <?php
 
-namespace DesiteGroup\LaravelWarehouseManagement\Nova;
+namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Nova\Resource;

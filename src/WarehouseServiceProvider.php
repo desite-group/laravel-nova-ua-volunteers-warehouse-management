@@ -1,12 +1,12 @@
 <?php
 
-namespace DesiteGroup\LaravelWarehouseManagement;
+namespace DesiteGroup\LaravelNovaWarehouseManagement;
 
-use DesiteGroup\LaravelWarehouseManagement\Nova\Category as NovaCategory;
-use DesiteGroup\LaravelWarehouseManagement\Nova\Product as NovaProduct;
-use DesiteGroup\LaravelWarehouseManagement\Nova\Counteragent as NovaCounteragent;
-use DesiteGroup\LaravelWarehouseManagement\Nova\Application as NovaApplication;
-use DesiteGroup\LaravelWarehouseManagement\Nova\Act as NovaAct;
+use DesiteGroup\LaravelNovaWarehouseManagement\Nova\Category as NovaCategory;
+use DesiteGroup\LaravelNovaWarehouseManagement\Nova\Product as NovaProduct;
+use DesiteGroup\LaravelNovaWarehouseManagement\Nova\Counteragent as NovaCounteragent;
+use DesiteGroup\LaravelNovaWarehouseManagement\Nova\Application as NovaApplication;
+use DesiteGroup\LaravelNovaWarehouseManagement\Nova\Act as NovaAct;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 

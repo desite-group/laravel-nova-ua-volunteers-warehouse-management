@@ -1,6 +1,6 @@
 <?php
 
-namespace DesiteGroup\LaravelWarehouseManagement\Nova;
+namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
 
 use Laravel\Nova\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -13,7 +13,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
-use \DesiteGroup\LaravelWarehouseManagement\Models\Act as ActModel;
+use \DesiteGroup\LaravelNovaWarehouseManagement\Models\Act as ActModel;
 
 class Act extends WarehouseResource
 {

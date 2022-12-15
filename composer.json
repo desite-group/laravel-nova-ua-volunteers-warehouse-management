@@ -3,7 +3,7 @@
     "description": "A simple package for an online store, for managing orders and warehouse",
     "autoload": {
         "psr-4": {
-            "DesiteGroup\\LaravelWarehouseManagement\\": "src/"
+            "DesiteGroup\\LaravelNovaWarehouseManagement\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DesiteGroup\\LaravelWarehouseManagement\\WarehouseServiceProvider"
+                "DesiteGroup\\LaravelNovaWarehouseManagement\\WarehouseServiceProvider"
             ]
         }
     }

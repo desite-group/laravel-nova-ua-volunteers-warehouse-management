@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'DesiteGroup\\LaravelWarehouseManagement\\' => array($baseDir . '/src'),
+    'DesiteGroup\\LaravelNovaWarehouseManagement\\' => array($baseDir . '/src'),
 );
