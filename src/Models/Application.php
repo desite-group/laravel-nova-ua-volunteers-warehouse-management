@@ -14,23 +14,18 @@ use Spatie\EloquentSortable\SortableTrait;
 
 class Application extends Model implements Sortable, HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, SortableTrait;
+    use HasFactory, InteractsWithMedia, SortableTrait;
+
+    protected $fillable = [
+        'document_number', 'organization',
+        'organization_address', 'organization_chief_name', 'organization_chief_surname', 'organization_chief_patronymic',
+        'additional_text', 'internal_comment', 'type', 'needs'
+    ];
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
-
-    public $translatable = [
-        'name',
-        'description',
-        'position',
-    ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
 
     public function scopeOrdered($query)
     {

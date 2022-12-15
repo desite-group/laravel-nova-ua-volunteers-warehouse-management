@@ -12,7 +12,12 @@
             "email": "roman@desite.group"
         }
     ],
-    "require": {},
+    "require": {
+        "ebess/advanced-nova-media-library": "^3.8",
+        "numaxlab/nova-ckeditor5-classic": "^1.1",
+        "outl1ne/nova-sortable": "2.4.4",
+        "spatie/laravel-medialibrary": "^9"
+    },
     "extra": {
         "laravel": {
             "providers": [

@@ -8,29 +8,21 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Translatable\HasTranslations;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Act extends Model implements Sortable, HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, SortableTrait;
+    use HasFactory, InteractsWithMedia, SortableTrait;
+
+    protected $fillable = [
+        'title', 'description', 'text', 'article', 'sku', 'category_id', 'price', 'is_active', 'internal_comment'
+    ];
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
-
-    public $translatable = [
-        'name',
-        'description',
-        'position',
-    ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
 
     public function scopeOrdered($query)
     {

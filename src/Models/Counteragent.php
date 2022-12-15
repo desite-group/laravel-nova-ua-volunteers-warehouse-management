@@ -8,23 +8,20 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Translatable\HasTranslations;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Counteragent extends Model implements Sortable, HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, SortableTrait;
+    use HasFactory, InteractsWithMedia, SortableTrait;
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
 
-    public $translatable = [
-        'name',
-        'description',
-        'position',
+    public $fillable = [
+        'name', 'surname', 'patronymic', 'phone', 'recipient_organization', 'recipient_address', 'internal_comment'
     ];
 
     public function scopeActive($query)
