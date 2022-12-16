@@ -1,5 +1,5 @@
 {
-    "name": "desite-group/laravel-warehouse-management",
+    "name": "desite-group/laravel-nova-warehouse-management",
     "description": "A simple package for an online store, for managing orders and warehouse",
     "autoload": {
         "psr-4": {
