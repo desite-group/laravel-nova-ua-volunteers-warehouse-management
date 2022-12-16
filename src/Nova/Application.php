@@ -2,6 +2,7 @@
 
 namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
 
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
@@ -70,19 +71,38 @@ class Application extends WarehouseResource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Images::make(__('Photo'), 'photo')
-                ->conversionOnIndexView('main'),
+            Text::make(__('Document Number'), 'document_number'),
 
-            Text::make(__('Name'), 'name')->translatable(),
+            Textarea::make(__('Organization'), 'organization'),
+            Text::make(__('Organization Chief Name'), 'organization_chief_name'),
+            Text::make(__('Organization Chief Surname'), 'organization_chief_surname'),
+            Text::make(__('Organization Chief Patronymic'), 'organization_chief_patronymic'),
+            Text::make(__('Organization Address'), 'organization_address'),
 
-            CKEditor5Classic::make(__('Description'), 'description')
+            Text::make(__('Phone'), 'phone'),
+            Text::make(__('Recipient Organization'), 'recipient_organization'),
+
+            CKEditor5Classic::make(__('Additional Text'), 'additional_text')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
-                })
-                ->hideFromIndex()
-                ->translatable(),
+                }),
 
-            Boolean::make(__('Active'), 'is_active'),
+            Select::make(__('Type'), 'type')->options([
+                'organization' => __('Organization'),
+                'military_personnel' => __('Military Personnel'),
+                'personal' => __('Personal')
+            ]),
+
+            Select::make(__('Needs'), 'needs')->options([
+                'military' => __('Military'),
+                'injured' => __('Injured'),
+                'civilian_displaced' => __('Civilian Displaced')
+            ]),
+
+            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+                ->displayUsing(function ($value) {
+                    return strip_tags($value);
+                }),
         ];
     }
 

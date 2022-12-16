@@ -19,9 +19,9 @@ class CreateWarehouseProductsTable extends Migration
             $table->string('description')->nullable();
             $table->string('text')->nullable();
             $table->string('article')->nullable();
-            $table->unsignedInteger('sku')->nullable();
             $table->unsignedInteger('category_id')->nullable();
             $table->decimal('price')->default(0.00)->nullable();
+            $table->decimal('average_price')->default(0.00)->nullable();
             $table->tinyInteger('is_active')->default(1);
 
             $table->text('internal_comment')->nullable();

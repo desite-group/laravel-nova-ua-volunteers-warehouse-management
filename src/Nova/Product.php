@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
 
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
@@ -73,14 +75,41 @@ class Product extends WarehouseResource
             Images::make(__('Photo'), 'photo')
                 ->conversionOnIndexView('main'),
 
-            Text::make(__('Name'), 'name')->translatable(),
+            Text::make(__('Name'), 'name'),
 
             CKEditor5Classic::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
+                ->hideFromIndex(),
+
+            CKEditor5Classic::make(__('Full description'), 'text')
+                ->displayUsing(function ($value) {
+                    return strip_tags($value);
+                })
+                ->hideFromIndex(),
+
+            Text::make('Артикул', 'article')
+                ->rules('required', 'max:255')
                 ->hideFromIndex()
-                ->translatable(),
+                ->creationRules(['required', 'unique:products'])
+                ->updateRules('unique:products,article,{{resourceId}}|required'),
+
+            BelongsTo::make(__('Category'), 'category', Category::class)
+                ->display('title'),
+
+            Number::make(__('Price'), 'price')
+                ->step(0.01)
+                ->sortable(),
+
+            Number::make(__('Average price'), 'average_price')
+                ->step(0.01)
+                ->sortable(),
+
+            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+                ->displayUsing(function ($value) {
+                    return strip_tags($value);
+                }),
 
             Boolean::make(__('Active'), 'is_active'),
         ];

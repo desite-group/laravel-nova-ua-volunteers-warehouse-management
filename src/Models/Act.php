@@ -29,6 +29,16 @@ class Act extends Model implements Sortable, HasMedia
         return $query->orderBy('sort_order');
     }
 
+    public function counteragent()
+    {
+        return $this->belongsTo(Counteragent::class);
+    }
+
+    public function application()
+    {
+        return $this->belongsTo(Application::class);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('main')

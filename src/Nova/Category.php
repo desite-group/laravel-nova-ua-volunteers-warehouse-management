@@ -73,14 +73,18 @@ class Category extends WarehouseResource
             Images::make(__('Photo'), 'photo')
                 ->conversionOnIndexView('main'),
 
-            Text::make(__('Name'), 'name')->translatable(),
+            Text::make(__('Name'), 'name'),
 
             CKEditor5Classic::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
-                ->hideFromIndex()
-                ->translatable(),
+                ->hideFromIndex(),
+
+            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+                ->displayUsing(function ($value) {
+                    return strip_tags($value);
+                }),
 
             Boolean::make(__('Active'), 'is_active'),
         ];

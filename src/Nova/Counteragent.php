@@ -70,19 +70,17 @@ class Counteragent extends WarehouseResource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Images::make(__('Photo'), 'photo')
-                ->conversionOnIndexView('main'),
+            Text::make(__('Name'), 'name'),
+            Text::make(__('Surname'), 'surname'),
+            Text::make(__('Patronymic'), 'patronymic'),
+            Text::make(__('Phone'), 'phone'),
+            Text::make(__('Recipient Organization'), 'recipient_organization'),
+            Text::make(__('Recipient Address'), 'recipient_address'),
 
-            Text::make(__('Name'), 'name')->translatable(),
-
-            CKEditor5Classic::make(__('Description'), 'description')
+            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
-                })
-                ->hideFromIndex()
-                ->translatable(),
-
-            Boolean::make(__('Active'), 'is_active'),
+                }),
         ];
     }
 
