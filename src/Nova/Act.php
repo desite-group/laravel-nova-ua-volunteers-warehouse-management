@@ -79,6 +79,7 @@ class Act extends WarehouseResource
             Text::make(__('Car Info'), 'car_info'),
             Text::make(__('License Plate'), 'license_plate'),
             Text::make(__('Recipient Address'), 'recipient_address'),
+            Text::make(__('Recipient Organization'), 'recipient_organization'),
 
             CKEditor5Classic::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
@@ -89,9 +90,6 @@ class Act extends WarehouseResource
             Text::make(__('Surname'), 'surname'),
             Text::make(__('Patronymic'), 'patronymic'),
             Text::make(__('Phone'), 'phone'),
-
-            Text::make(__('Recipient Organization'), 'recipient_organization'),
-            Text::make(__('Recipient Address'), 'recipient_address'),
 
             BelongsTo::make(__('Counteragent'), 'counteragent', Counteragent::class)
                 ->display('title'),

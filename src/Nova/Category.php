@@ -75,7 +75,7 @@ class Category extends WarehouseResource
 
             Text::make(__('Title'), 'title'),
 
-            CKEditor5Classic::make(__('Description'), 'description')
+            CKEditor5Classic::make(__('Short description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
