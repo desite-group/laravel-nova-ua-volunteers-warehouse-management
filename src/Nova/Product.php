@@ -90,19 +90,19 @@ class Product extends WarehouseResource
                 ->hideFromIndex(),
 
             Text::make('Артикул', 'article')
-                ->rules('required', 'max:255')
+                ->rules('max:255')
                 ->hideFromIndex()
-                ->creationRules(['required', 'unique:products'])
+                ->creationRules(['nullable', 'unique:products'])
                 ->updateRules('unique:products,article,{{resourceId}}|required'),
 
             BelongsTo::make(__('Category'), 'category', Category::class)
                 ->display('title'),
 
-            Number::make(__('Price'), 'price')
+            Number::make(__('Purchase price'), 'purchase_price')
                 ->step(0.01)
                 ->sortable(),
 
-            Number::make(__('Average price'), 'average_price')
+            Number::make(__('Price'), 'price')
                 ->step(0.01)
                 ->sortable(),
 

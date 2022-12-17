@@ -16,7 +16,7 @@ class Product extends Model implements Sortable, HasMedia
     use HasFactory, InteractsWithMedia, SortableTrait;
 
     public $fillable = [
-        'title', 'description', 'text', 'article', 'sku', 'category_id', 'price', 'is_active', 'internal_comment'
+        'title', 'description', 'text', 'article', 'category_id', 'purchase_price', 'price', 'is_active', 'internal_comment'
     ];
 
     public $sortable = [
