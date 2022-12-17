@@ -75,7 +75,7 @@ class Product extends WarehouseResource
             Images::make(__('Photo'), 'photo')
                 ->conversionOnIndexView('main'),
 
-            Text::make(__('Name'), 'name'),
+            Text::make(__('Title'), 'title'),
 
             CKEditor5Classic::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
