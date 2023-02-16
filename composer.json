@@ -1,9 +1,9 @@
 {
-    "name": "desite-group/laravel-nova-warehouse-management",
+    "name": "desite-group/laravel-nova-ua-volunteers-warehouse-management",
     "description": "A simple package for an online store, for managing orders and warehouse",
     "autoload": {
         "psr-4": {
-            "DesiteGroup\\LaravelNovaWarehouseManagement\\": "src/"
+            "DesiteGroup\\LaravelNovaUaVolunteersWarehouseManagement\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DesiteGroup\\LaravelNovaWarehouseManagement\\Providers\\WarehouseServiceProvider"
+                "DesiteGroup\\LaravelNovaUaVolunteersWarehouseManagement\\Providers\\WarehouseServiceProvider"
             ]
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DesiteGroup\LaravelNovaWarehouseManagement\Models;
+namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

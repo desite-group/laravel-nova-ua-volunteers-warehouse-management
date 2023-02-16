@@ -1,6 +1,6 @@
 <?php
 
-namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
+namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Nova;
@@ -14,7 +14,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
-use \DesiteGroup\LaravelNovaWarehouseManagement\Models\Act as ActModel;
+use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Act as ActModel;
 
 class Act extends WarehouseResource
 {

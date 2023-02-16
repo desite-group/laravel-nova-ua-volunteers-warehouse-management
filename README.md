@@ -9,7 +9,7 @@ You can install the package via composer:
 
 You need to publish the migration to create tables:
 
-    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaWarehouseManagement\Providers\WarehouseServiceProvider" --tag="migrations"
+    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers\WarehouseServiceProvider" --tag="migrations"
 
 After that, you need to run migrations.
 

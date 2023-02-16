@@ -1,6 +1,6 @@
 <?php
 
-namespace DesiteGroup\LaravelNovaWarehouseManagement\Nova;
+namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
@@ -15,7 +15,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
-use \DesiteGroup\LaravelNovaWarehouseManagement\Models\Product as ProductModel;
+use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Product as ProductModel;
 
 class Product extends WarehouseResource
 {
