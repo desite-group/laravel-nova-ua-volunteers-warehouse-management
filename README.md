@@ -5,7 +5,7 @@ A simple package for an online store, for managing orders and warehouse. Based o
 
 You can install the package via composer:
 
-    composer require desite-group/laravel-nova-warehouse-management
+    composer require desite-group/laravel-nova-ua-volunteers-warehouse-management
 
 You need to publish the migration to create tables:
 
