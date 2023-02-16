@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DesiteGroup\\LaravelNovaWarehouseManagement\\WarehouseServiceProvider"
+                "DesiteGroup\\LaravelNovaWarehouseManagement\\Providers\\WarehouseServiceProvider"
             ]
         }
     }
