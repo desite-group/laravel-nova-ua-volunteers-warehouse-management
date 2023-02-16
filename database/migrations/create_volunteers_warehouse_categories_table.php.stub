@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWarehouseProductsTable extends Migration
+class CreateVolunteersWarehouseCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateWarehouseProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->string('text')->nullable();
-            $table->string('article')->nullable();
-            $table->unsignedInteger('category_id')->nullable();
-            $table->decimal('purchase_price')->default(0.00)->nullable();
-            $table->decimal('price')->default(0.00)->nullable();
+            $table->string('title');
+            $table->text('description');
             $table->tinyInteger('is_active')->default(1);
 
             $table->text('internal_comment')->nullable();
@@ -39,6 +34,6 @@ class CreateWarehouseProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('categories');
     }
 }

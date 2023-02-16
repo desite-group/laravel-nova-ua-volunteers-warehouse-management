@@ -49,7 +49,7 @@ class Product extends WarehouseResource
      *
      * @var string
      */
-    public static $group = 'Warehouse';
+    public static $group = 'Volunteers Warehouse';
 
     /**
      * Get the displayable label of the resource.
