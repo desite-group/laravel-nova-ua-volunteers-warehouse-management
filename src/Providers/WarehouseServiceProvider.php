@@ -7,6 +7,7 @@ use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Product as NovaP
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Counteragent as NovaCounteragent;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Application as NovaApplication;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Act as NovaAct;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Request as NovaRequest;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 
@@ -16,31 +17,37 @@ class WarehouseServiceProvider extends ServiceProvider
     {
         if (! class_exists('CreateWarehouseCategoriesTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_volunteers_warehouse_categories_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_categories_table.php'),
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_categories_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_categories_table.php'),
            ], 'migrations');
         }
 
         if (! class_exists('CreateWarehouseProductsTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_volunteers_warehouse_products_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_products_table.php'),
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_products_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_products_table.php'),
             ], 'migrations');
         }
 
         if (! class_exists('CreateWarehouseCounteragentsTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_volunteers_warehouse_counteragents_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_counteragents_table.php'),
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_counteragents_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_counteragents_table.php'),
             ], 'migrations');
         }
 
         if (! class_exists('CreateWarehouseApplicationsTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_volunteers_warehouse_applications_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_applications_table.php'),
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_applications_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_applications_table.php'),
             ], 'migrations');
         }
 
         if (! class_exists('CreateWarehouseActsTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_volunteers_warehouse_acts_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_acts_table.php'),
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_acts_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_acts_table.php'),
+            ], 'migrations');
+        }
+
+        if (! class_exists('CreateVolunteersWarehouseRequestsTable')) {
+            $this->publishes([
+                __DIR__ . '/../../database/migrations/create_volunteers_warehouse_requests_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_volunteers_warehouse_requests_table.php'),
             ], 'migrations');
         }
 
@@ -52,6 +59,7 @@ class WarehouseServiceProvider extends ServiceProvider
                 NovaCounteragent::class,
                 NovaApplication::class,
                 NovaAct::class,
+                NovaRequest::class,
             ]);
         });
     }

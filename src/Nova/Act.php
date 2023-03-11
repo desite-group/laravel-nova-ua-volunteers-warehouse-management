@@ -91,8 +91,7 @@ class Act extends WarehouseResource
             Text::make(__('Patronymic'), 'patronymic'),
             Text::make(__('Phone'), 'phone'),
 
-            BelongsTo::make(__('Counteragent'), 'counteragent', Counteragent::class)
-                ->display('title'),
+            BelongsTo::make(__('Counteragent'), 'counteragent', Counteragent::class),
 
             BelongsTo::make(__('Application'), 'application', Application::class)
                 ->display('title'),

@@ -4,6 +4,7 @@ namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -23,6 +24,11 @@ class Counteragent extends Model implements Sortable, HasMedia
     public $fillable = [
         'name', 'surname', 'patronymic', 'phone', 'recipient_organization', 'recipient_address', 'internal_comment'
     ];
+
+    public function requests(): HasMany
+    {
+        return $this->hasMany(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Request::class);
+    }
 
     public function scopeActive($query)
     {
