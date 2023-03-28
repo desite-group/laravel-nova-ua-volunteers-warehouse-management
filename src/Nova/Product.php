@@ -33,7 +33,7 @@ class Product extends WarehouseResource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -41,7 +41,7 @@ class Product extends WarehouseResource
      * @var array
      */
     public static $search = [
-        'name',
+        'title',
     ];
 
     /**

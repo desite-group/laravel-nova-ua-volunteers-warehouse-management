@@ -14,3 +14,13 @@ You need to publish the migration to create tables:
 After that, you need to run migrations.
 
     php artisan migrate
+You can publish seeders
+
+```
+    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers\WarehouseServiceProvider" --tag="seeders"
+```
+You can seed checkpoints
+
+```
+    php artisan db:seed --class=CheckpointsSeeder
+```
