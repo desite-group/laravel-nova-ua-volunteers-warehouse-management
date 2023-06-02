@@ -27,7 +27,7 @@ class Counteragent extends Model implements Sortable, HasMedia
 
     public function requests(): HasMany
     {
-        return $this->hasMany(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Request::class);
+        return $this->hasMany(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\IncomingRequest::class);
     }
 
     public function scopeActive($query)

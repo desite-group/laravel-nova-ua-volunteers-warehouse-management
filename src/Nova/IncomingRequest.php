@@ -13,11 +13,11 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use \Illuminate\Http\Request as HttpRequest;
 use Laravel\Nova\Fields\Select;
-use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Request as RequestModel;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\IncomingRequest as RequestModel;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 
-class Request extends Resource
+class IncomingRequest extends Resource
 {
     use HasConditionalContainer; // Important!
     /**
@@ -25,7 +25,7 @@ class Request extends Resource
      *
      * @var string
      */
-    public static $model = \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Request::class;
+    public static $model = \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\IncomingRequest::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
