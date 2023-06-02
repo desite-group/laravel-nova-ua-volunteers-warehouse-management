@@ -22,5 +22,5 @@ You can publish seeders
 You can seed checkpoints
 
 ```
-    php artisan db:seed --class=CheckpointsSeeder
+    php artisan db:seed
 ```
