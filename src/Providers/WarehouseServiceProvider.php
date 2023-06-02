@@ -19,7 +19,7 @@ class WarehouseServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'volunteers');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'volunteers_warehouse');
 
         $this->app->booted(function () {
 
