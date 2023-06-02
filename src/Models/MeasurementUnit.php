@@ -14,6 +14,6 @@ class MeasurementUnit extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
-        'title', 'description', 'code', 'is_active', 'is_general'
+        'name', 'description', 'code', 'is_active', 'is_general'
     ];
 }
