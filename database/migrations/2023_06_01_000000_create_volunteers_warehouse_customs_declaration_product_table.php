@@ -13,7 +13,7 @@ class CreateVolunteersWarehouseCustomsDeclarationProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('customs_declaration_product', function (Blueprint $table) {
+        Schema::create('customs_declaration_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customs_declaration_id');
             $table->unsignedBigInteger('product_id');
@@ -30,6 +30,6 @@ class CreateVolunteersWarehouseCustomsDeclarationProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customs_declaration_product');
+        Schema::dropIfExists('customs_declaration_products');
     }
 }
