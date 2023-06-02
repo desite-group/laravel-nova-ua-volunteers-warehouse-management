@@ -16,6 +16,11 @@ class CreateVolunteersWarehouseMeasurementUnitsTable extends Migration
         Schema::create('measurement_units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('code');
+            $table->tinyInteger('is_active')->default(1);
+            $table->tinyInteger('is_general')->default(1);
+
             $table->timestamps();
         });
     }
