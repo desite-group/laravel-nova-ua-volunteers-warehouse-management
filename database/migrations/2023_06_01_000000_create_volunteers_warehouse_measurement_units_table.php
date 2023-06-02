@@ -17,7 +17,7 @@ class CreateVolunteersWarehouseMeasurementUnitsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->tinyInteger('is_active')->default(1);
             $table->tinyInteger('is_general')->default(1);
 
