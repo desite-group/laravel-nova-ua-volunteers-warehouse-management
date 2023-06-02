@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomsDeclarationProductTable extends Migration
+class CreateVolunteersWarehouseCustomsDeclarationProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomsDeclarationProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('customs_declaration_product', function (Blueprint $table) {
+        Schema::create('customs_declaration_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customs_declaration_id');
             $table->unsignedBigInteger('product_id');
@@ -30,6 +30,6 @@ class CreateCustomsDeclarationProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customs_declaration_product');
+        Schema::dropIfExists('customs_declaration_products');
     }
 }

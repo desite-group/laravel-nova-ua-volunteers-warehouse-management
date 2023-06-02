@@ -39,6 +39,11 @@ class Product extends Model implements Sortable, HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('main')

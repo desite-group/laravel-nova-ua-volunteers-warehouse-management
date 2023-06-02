@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCheckpointsTable extends Migration
+class CreateVolunteersWarehouseIncomingRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateCheckpointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('checkpoints', function (Blueprint $table) {
+        Schema::create('incoming_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
+            $table->json('data')->nullable();
+            $table->unsignedInteger('counteragent_id')->nullable();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +31,6 @@ class CreateCheckpointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkpoints');
+        Schema::dropIfExists('incoming_requests');
     }
 }

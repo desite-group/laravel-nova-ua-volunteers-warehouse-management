@@ -21,7 +21,7 @@ class MeasurementUnit extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -60,7 +60,12 @@ class MeasurementUnit extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Text::make(__('Name'), 'name'),
+            Text::make(__('Title'), 'title'),
+            Text::make(__('Description'), 'description'),
+            Text::make(__('Code'), 'code'),
+
+            Boolean::make(__('Active'), 'is_active'),
+            Boolean::make(__('General'), 'is_general'),
         ];
     }
 
