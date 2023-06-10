@@ -19,15 +19,6 @@ class WarehouseServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'volunteers_warehouse');
-
-        Nova::serving(function () {
-            $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'volunteers_warehouse');
-        });
-
-        $this->publishes([
-            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/volunteers_warehouse'),
-        ], 'translations');
 
         $this->app->booted(function () {
 
