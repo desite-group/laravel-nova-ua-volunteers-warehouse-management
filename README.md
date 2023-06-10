@@ -10,10 +10,10 @@ You can install the package via composer:
 After that, you need to run migrations.
 
     php artisan migrate
-You can publish seeders
+You can publish translates
 
 ```
-    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers\WarehouseServiceProvider" --tag="seeders"
+    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers\WarehouseServiceProvider"
 ```
 You can seed checkpoints
 

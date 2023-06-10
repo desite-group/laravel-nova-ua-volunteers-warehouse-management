@@ -21,6 +21,10 @@ class WarehouseServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'volunteers_warehouse');
 
+        $this->publishes([
+            __DIR__.'/../lang' => $this->app->langPath('vendor/volunteers_warehouse'),
+        ]);
+
         $this->app->booted(function () {
 
             Nova::resources([
