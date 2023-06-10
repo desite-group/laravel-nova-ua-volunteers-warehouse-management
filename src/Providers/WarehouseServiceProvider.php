@@ -22,7 +22,7 @@ class WarehouseServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'volunteers_warehouse');
 
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/volunteers_warehouse'),
+            __DIR__.'/../../lang' => $this->app->langPath('vendor/volunteers_warehouse'),
         ]);
 
         $this->app->booted(function () {
