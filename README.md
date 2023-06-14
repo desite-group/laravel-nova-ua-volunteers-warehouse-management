@@ -12,10 +12,12 @@ After that, you need to run migrations.
     php artisan migrate
 You can publish translates
 
-
-    php artisan vendor:publish --provider="DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers\WarehouseServiceProvider"
+    php artisan vendor:publish --tag=volunteers-warehouse-seeds
 
 You can seed checkpoints
 
     php artisan db:seed --class=VolunteersWarehouseCheckpointsSeeder
 
+Also, you can seed demo data
+
+    php artisan db:seed --class=VolunteersWarehouseDemoSeeder

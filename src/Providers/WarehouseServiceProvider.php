@@ -20,6 +20,14 @@ class WarehouseServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
+        $this->publishes([
+            __DIR__ . '/../../database/seeders/' => database_path('seeders/'),
+        ], 'volunteers-warehouse-database');
+
+        $this->publishes([
+            __DIR__ . '/../../database/factories/' => database_path('factories/'),
+        ], 'volunteers-warehouse-database');
+
         $this->app->booted(function () {
 
             Nova::resources([

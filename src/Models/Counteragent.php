@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
+use Database\Factories\CounteragentFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +26,14 @@ class Counteragent extends Model implements Sortable, HasMedia
     public $fillable = [
         'name', 'surname', 'patronymic', 'phone', 'recipient_organization', 'recipient_address', 'internal_comment'
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return CounteragentFactory::new();
+    }
 
     public function requests(): HasMany
     {
