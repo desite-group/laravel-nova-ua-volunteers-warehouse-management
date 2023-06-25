@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class VolunteersWarehouseCheckpointsSeeder extends Seeder
+class VolunteersWarehouseBaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,80 @@ class VolunteersWarehouseCheckpointsSeeder extends Seeder
      */
     public function run()
     {
-        $items = [
+        $this->seedCustomsCheckpoints();
+        $this->seedMeasurementUnits();
+    }
+
+    private function seedMeasurementUnits()
+    {
+        $units = [
+            [
+                'name' => 'кілограм',
+                'description' => '',
+                'code' => 'кг',
+                'is_active' => 1,
+                'is_general' => 1,
+            ],
+            [
+                'name' => 'штука',
+                'description' => '',
+                'code' => 'шт',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'упаковка',
+                'description' => 'упаковка вміщає дeкілька штук',
+                'code' => 'уп',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'ящик',
+                'description' => 'ящик вміщає дeкілька упаковок',
+                'code' => 'ящ',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'метр',
+                'description' => '',
+                'code' => 'м',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'пара',
+                'description' => 'відноситься до взуття, одягу, тощо.',
+                'code' => 'пара',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'літр',
+                'description' => '',
+                'code' => 'л',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+            [
+                'name' => 'пластинка',
+                'description' => 'відноситься до медичних препаратів',
+                'code' => 'пласт',
+                'is_active' => 1,
+                'is_general' => 0,
+            ],
+        ];
+
+        foreach ($units as $unit) {
+            \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\MeasurementUnit::firstOrCreate([
+                'code' => $unit['code']
+            ], $unit);
+        }
+    }
+    private function seedCustomsCheckpoints()
+    {
+        $customs = [
             'Рава-Руська (Хребенне)',
             'Шегині (Медика)',
             'Ягодин (Дорогуськ)',
@@ -100,9 +173,9 @@ class VolunteersWarehouseCheckpointsSeeder extends Seeder
             'Могилів-Подільський (Волчинець)'
         ];
 
-        foreach ($items as $item) {
+        foreach ($customs as $custom) {
             \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Checkpoint::firstOrCreate([
-                'name' => $item
+                'name' => $custom
             ]);
         }
     }

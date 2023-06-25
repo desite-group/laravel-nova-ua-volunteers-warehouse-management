@@ -32,7 +32,7 @@ class Act extends WarehouseResource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -94,7 +94,7 @@ class Act extends WarehouseResource
             BelongsTo::make(__('Counteragent'), 'counteragent', Counteragent::class),
 
             BelongsTo::make(__('Application'), 'application', Application::class)
-                ->display('title'),
+                ->display('document_number'),
 
             CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {

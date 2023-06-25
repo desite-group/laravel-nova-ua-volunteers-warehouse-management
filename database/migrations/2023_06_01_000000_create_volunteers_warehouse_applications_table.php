@@ -23,6 +23,9 @@ class CreateVolunteersWarehouseApplicationsTable extends Migration
             $table->string('organization_chief_surname')->nullable();
             $table->string('organization_chief_patronymic')->nullable();
 
+            $table->string('recipient')->nullable();
+            $table->string('phone')->nullable();
+
             $table->text('additional_text')->nullable();
 
             $table->text('internal_comment')->nullable();

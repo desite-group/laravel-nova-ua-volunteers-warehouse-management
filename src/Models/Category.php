@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
+use Database\Factories\CategoryFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
@@ -34,6 +36,14 @@ class Category extends Model implements Sortable, HasMedia
     public function scopeOrdered($query)
     {
         return $query->orderBy('sort_order');
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return CategoryFactory::new();
     }
 
     public function registerMediaConversions(Media $media = null): void

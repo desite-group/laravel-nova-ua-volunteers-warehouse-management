@@ -32,7 +32,7 @@ class Application extends WarehouseResource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'document_number';
 
     /**
      * The columns that should be searched.
@@ -79,8 +79,8 @@ class Application extends WarehouseResource
             Text::make(__('Organization Chief Patronymic'), 'organization_chief_patronymic'),
             Text::make(__('Organization Address'), 'organization_address'),
 
+            Text::make(__('Recipient'), 'recipient'),
             Text::make(__('Phone'), 'phone'),
-            Text::make(__('Recipient Organization'), 'recipient_organization'),
 
             CKEditor5Classic::make(__('Additional Text'), 'additional_text')
                 ->displayUsing(function ($value) {

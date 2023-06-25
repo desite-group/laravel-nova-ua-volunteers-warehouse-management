@@ -10,13 +10,14 @@ You can install the package via composer:
 After that, you need to run migrations.
 
     php artisan migrate
-You can publish translates
 
-    php artisan vendor:publish --tag=volunteers-warehouse-seeds
+You need to publish database data
 
-You can seed checkpoints
+    php artisan vendor:publish --tag=volunteers-warehouse-database
 
-    php artisan db:seed --class=VolunteersWarehouseCheckpointsSeeder
+You need to seed base data
+
+    php artisan db:seed --class=VolunteersWarehouseBaseSeeder
 
 Also, you can seed demo data
 

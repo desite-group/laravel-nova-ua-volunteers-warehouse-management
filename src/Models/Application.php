@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
+use Database\Factories\ApplicationsFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
@@ -19,6 +21,7 @@ class Application extends Model implements Sortable, HasMedia
     protected $fillable = [
         'document_number', 'organization',
         'organization_address', 'organization_chief_name', 'organization_chief_surname', 'organization_chief_patronymic',
+        'phone', 'recipient',
         'additional_text', 'internal_comment', 'type', 'needs'
     ];
 
@@ -26,6 +29,14 @@ class Application extends Model implements Sortable, HasMedia
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return ApplicationsFactory::new();
+    }
 
     public function scopeOrdered($query)
     {

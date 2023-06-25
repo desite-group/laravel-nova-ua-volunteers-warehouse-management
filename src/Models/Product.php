@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
+use Database\Factories\ProductFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
@@ -42,6 +44,14 @@ class Product extends Model implements Sortable, HasMedia
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return ProductFactory::new();
     }
 
     public function registerMediaConversions(Media $media = null): void

@@ -2,6 +2,9 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
+use Database\Factories\CategoryFactory;
+use Database\Factories\CustomsDeclaraionsFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -48,6 +51,14 @@ class CustomsDeclaration extends Model
             ->withPivot([
                 'quantity', 'measurement_unit_id'
             ]);
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return CustomsDeclaraionsFactory::new();
     }
 
     public static function getMostPopular(string $field, $count)
