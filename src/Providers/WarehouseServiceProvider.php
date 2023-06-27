@@ -35,7 +35,6 @@ class WarehouseServiceProvider extends ServiceProvider
                 NovaCounteragent::class,
                 NovaApplication::class,
                 NovaAct::class,
-                NovaRequest::class,
                 NovaMeasurementUnit::class,
                 NovaCheckpoint::class,
                 NovaCustomsDeclaration::class,
