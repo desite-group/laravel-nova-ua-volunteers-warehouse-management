@@ -12,7 +12,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-use OptimistDigital\NovaSortable\Traits\HasSortableRows;
+use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Category as CategoryModel;
 
 class Category extends WarehouseResource
