@@ -18,6 +18,18 @@ class Application extends Model implements Sortable, HasMedia
 {
     use HasFactory, InteractsWithMedia, SortableTrait;
 
+    const types = [
+        'military'      => 'Військової Частини',
+        'organization'  => 'Організації',
+        'person'        => 'фізичної особи (у т.ч. військовослужбовця)'
+    ];
+
+    const links = [
+        'military'      => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
+        'organization'  => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
+        'person'        => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo'
+    ];
+
     protected $fillable = [
         'document_number', 'organization',
         'organization_address', 'organization_chief_name', 'organization_chief_surname', 'organization_chief_patronymic',
@@ -59,5 +71,15 @@ class Application extends Model implements Sortable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();
+    }
+
+    public static function getTypeByCode(?string $code): ?string
+    {
+        return self::types[$code] ?? null;
+    }
+
+    public static function getFileLinkByCode(?string $code): ?string
+    {
+        return self::links[$code] ?? null;
     }
 }
