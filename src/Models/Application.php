@@ -25,9 +25,18 @@ class Application extends Model implements Sortable, HasMedia
     ];
 
     const links = [
-        'military'      => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
-        'organization'  => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
-        'person'        => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo'
+        'military'      => [
+            'google_dock' => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
+            'file' => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs'
+        ],
+        'organization'  => [
+            'google_dock' => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
+            'file' => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E'
+        ],
+        'person'        => [
+            'google_dock' => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo',
+            'file' => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo'
+        ]
     ];
 
     protected $fillable = [
@@ -78,7 +87,7 @@ class Application extends Model implements Sortable, HasMedia
         return self::types[$code] ?? null;
     }
 
-    public static function getFileLinkByCode(?string $code): ?string
+    public static function getFileLinkByCode(?string $code): ?array
     {
         return self::links[$code] ?? null;
     }
