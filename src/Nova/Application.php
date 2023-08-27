@@ -13,12 +13,12 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-use Outl1ne\NovaSortable\Traits\HasSortableRows;
+//use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Application as ApplicationModel;
 
 class Application extends WarehouseResource
 {
-    use HasSortableRows;
+//    use HasSortableRows;
 
     /**
      * The model the resource corresponds to.
