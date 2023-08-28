@@ -52,6 +52,15 @@ class Application extends Model implements Sortable, HasMedia
         'sort_when_creating' => true,
     ];
 
+    protected static function boot(){
+        parent::boot();
+        static::creating(function($model){
+            if(!$model->document_number) {
+                $model->document_number = time(); // TODO make template for documents
+            }
+        });
+    }
+
     /**
      * Create a new factory instance for the model.
      */
