@@ -94,7 +94,7 @@ class Application extends Model implements Sortable, HasMedia
     }
 
 
-    public function createFromBot(array $data): self
+    public static function createFromBot(array $data): self
     {
         $model = new self;
         $model->organization = $data['recipient'];
