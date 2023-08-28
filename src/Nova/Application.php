@@ -2,6 +2,7 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -98,6 +99,8 @@ class Application extends WarehouseResource
                 'injured' => __('Injured'),
                 'civilian_displaced' => __('Civilian Displaced')
             ]),
+
+            Files::make(__('Documents'), 'documents'),
 
             CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
