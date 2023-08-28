@@ -106,6 +106,7 @@ class Application extends Model implements Sortable, HasMedia
         $model->additional_text = Arr::get($data, 'description');
         $model->type = Arr::get($data, 'type');
 
+        $model->save();
         return $model;
     }
 }
