@@ -6,6 +6,7 @@ use Database\Factories\ApplicationsFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -41,8 +42,8 @@ class Application extends Model implements Sortable, HasMedia
 
     protected $fillable = [
         'document_number', 'organization',
-        'organization_address', 'organization_chief_name', 'organization_chief_surname', 'organization_chief_patronymic',
-        'phone', 'recipient',
+        'organization_address', 'organization_chief',
+        'organization_registration', 'phone', 'recipient',
         'additional_text', 'internal_comment', 'type', 'needs'
     ];
 
@@ -97,13 +98,13 @@ class Application extends Model implements Sortable, HasMedia
     public static function createFromBot(array $data): self
     {
         $model = new self;
-        $model->organization = $data['recipient'];
-        $model->organization_chief = $data['recipient_person'];
-        $model->organization_registration = $data['registration_data'];
-        $model->recipient = $data['contact_person'];
-        $model->phone = $data['contact_phone'];
-        $model->additional_text = $data['description'];
-        $model->type = $data['type'];
+        $model->organization = Arr::get($data, 'recipient');
+        $model->organization_chief = Arr::get($data, 'recipient_person');
+        $model->organization_registration = Arr::get($data, 'registration_data');
+        $model->recipient = Arr::get($data, 'contact_person');
+        $model->phone = Arr::get($data, 'contact_phone');
+        $model->additional_text = Arr::get($data, 'description');
+        $model->type = Arr::get($data, 'type');
 
         return $model;
     }
