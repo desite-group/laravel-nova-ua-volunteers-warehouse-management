@@ -29,7 +29,7 @@ class CreateVolunteersWarehouseApplicationsTable extends Migration
 
             $table->text('internal_comment')->nullable();
 
-            $table->enum('type', ['organization', 'military_personnel', 'personal'])->nullable();
+            $table->enum('type', ['organization', 'military', 'person'])->nullable();
             $table->enum('needs', ['military', 'injured', 'civilian_displaced'])->nullable();
 
             $table->integer('sort_order');
