@@ -25,17 +25,17 @@ class Application extends Model implements Sortable, HasMedia
     ];
 
     const links = [
-        'military'      => [
-            'google_dock' => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
-            'file' => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs'
+        'military'          => [
+            'google_dock'   => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
+            'file'          => '/files/military.docx'
         ],
-        'organization'  => [
-            'google_dock' => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
-            'file' => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E'
+        'organization'      => [
+            'google_dock'   => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
+            'file'          => '/files/organization.docx'
         ],
-        'person'        => [
-            'google_dock' => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo',
-            'file' => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo'
+        'person'            => [
+            'google_dock'   => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo',
+            'file'          => '/files/person.docx'
         ]
     ];
 
@@ -80,6 +80,7 @@ class Application extends Model implements Sortable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();
+        $this->addMediaCollection('documents');
     }
 
     public static function getTypeByCode(?string $code): ?string
@@ -90,5 +91,20 @@ class Application extends Model implements Sortable, HasMedia
     public static function getFileLinkByCode(?string $code): ?array
     {
         return self::links[$code] ?? null;
+    }
+
+
+    public function createFromBot(array $data): self
+    {
+        $model = new self;
+        $model->organization = $data['recipient'];
+        $model->organization_chief = $data['recipient_person'];
+        $model->organization_registration = $data['registration_data'];
+        $model->recipient = $data['contact_person'];
+        $model->phone = $data['contact_phone'];
+        $model->additional_text = $data['description'];
+        $model->type = $data['type'];
+
+        return $model;
     }
 }
