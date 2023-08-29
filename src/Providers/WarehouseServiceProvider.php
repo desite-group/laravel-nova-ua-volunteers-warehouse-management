@@ -7,6 +7,12 @@ use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Product as NovaP
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Counteragent as NovaCounteragent;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Application as NovaApplication;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Act as NovaAct;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser as NovaBotUser;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole as NovaBotRole;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Loading as NovaLoading;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotPermission as NovaPermission;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Task as NovaTask;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Question as NovaQuestion;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\MeasurementUnit as NovaMeasurementUnit;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Checkpoint as NovaCheckpoint;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\CustomsDeclaration as NovaCustomsDeclaration;
@@ -28,13 +34,18 @@ class WarehouseServiceProvider extends ServiceProvider
         ], 'volunteers-warehouse-database');
 
         $this->app->booted(function () {
-
             Nova::resources([
                 NovaCategory::class,
                 NovaProduct::class,
                 NovaCounteragent::class,
                 NovaApplication::class,
                 NovaAct::class,
+                NovaBotUser::class,
+                NovaBotRole::class,
+                NovaLoading::class,
+                NovaPermission::class,
+                NovaQuestion::class,
+                NovaTask::class,
                 NovaMeasurementUnit::class,
                 NovaCheckpoint::class,
                 NovaCustomsDeclaration::class,

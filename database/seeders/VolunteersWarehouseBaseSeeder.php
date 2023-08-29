@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotPermission;
 use Illuminate\Database\Seeder;
 
 class VolunteersWarehouseBaseSeeder extends Seeder
@@ -15,6 +16,8 @@ class VolunteersWarehouseBaseSeeder extends Seeder
     {
         $this->seedCustomsCheckpoints();
         $this->seedMeasurementUnits();
+        $this->seedPermissions();
+        $this->seedBotRoles();
     }
 
     private function seedMeasurementUnits()
@@ -177,6 +180,123 @@ class VolunteersWarehouseBaseSeeder extends Seeder
             \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Checkpoint::firstOrCreate([
                 'name' => $custom
             ]);
+        }
+    }
+
+    private function seedPermissions()
+    {
+        $data = [
+            [
+                'name' => 'Менеджер завдань',
+                'code' => 'task',
+            ],
+            [
+                'name' => 'Скарги та пропозиції',
+                'code' => 'appeal',
+            ],
+            [
+                'name' => 'Створення завдання іншим',
+                'code' => 'task-creating',
+            ],
+            [
+                'name' => 'Завантаження/Розвантаження',
+                'code' => 'loading',
+            ],
+            [
+                'name' => 'Важливе оголошення',
+                'code' => 'advertisement',
+            ],
+            [
+                'name' => 'Медіа',
+                'code' => 'media',
+            ],
+            [
+                'name' => 'Робота з складом',
+                'code' => 'warehouse',
+            ],
+            [
+                'name' => 'Робота з документами',
+                'code' => 'documents',
+            ],
+            [
+                'name' => 'Голосування',
+                'code' => 'vote',
+            ]
+        ];
+
+        foreach ($data as $item) {
+            \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotPermission::firstOrCreate(['code' => \Illuminate\Support\Arr::get($item, 'code')], $item);
+        }
+    }
+
+    private function seedBotRoles()
+    {
+        $roles = [
+            [
+                'name'          => 'Гість',
+                'code'          => 'guest'
+            ],
+            [
+                'name'          => 'Волонтер',
+                'code'          => 'volunteer'
+            ],
+            [
+                'name'          => 'Активний Волонтер',
+                'code'          => 'active-volunteer'
+            ],
+            [
+                'name'          => 'Медіа',
+                'code'          => 'media'
+            ],
+            [
+                'name'          => 'Опрацювання Звернень',
+                'code'          => 'applications'
+            ],
+            [
+                'name'          => 'Робота з складом',
+                'code'          => 'warehouse'
+            ],
+            [
+                'name'          => 'Робота з документами',
+                'code'          => 'documents'
+            ],
+            [
+                'name'          => 'Правління',
+                'code'          => 'board'
+            ],
+        ];
+
+        foreach ($roles as $role) {
+            $role = \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotRole::firstOrCreate(['code' => \Illuminate\Support\Arr::get($role, 'code')], $role);
+
+            switch ($role->code) {
+                case 'guest':
+                    $role->permissions()->attach([1,2]);
+                    break;
+                case 'volunteer':
+                    $role->permissions()->attach([1,2,3,4]);
+                    break;
+                case 'active-volunteer':
+                    $role->permissions()->attach([1,2,3,4,5]);
+                    break;
+                case 'media':
+                    $role->permissions()->attach([1,2,3,4,5,6]);
+                    break;
+                case 'applications':
+                    $role->permissions()->attach([1,2,3,4,5,6]);
+                    break;
+                case 'warehouse':
+                    $role->permissions()->attach([1,2,3,4,5,6,7]);
+                    break;
+                case 'documents':
+                    $role->permissions()->attach([1,2,3,4,5,6,7,8]);
+                    break;
+                case 'board':
+                    foreach (BotPermission::all() as $permission) {
+                        $role->permissions()->attach($permission->id);
+                    }
+                    break;
+            }
         }
     }
 }
