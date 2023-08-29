@@ -56,7 +56,9 @@ class ApplicationUploadPage extends AbstractPage
 
                 return;
             }
-            $application->addMediaFromUrl($message->getUrl())->toMediaCollection('documents');
+            $url = $message->getUrl();
+            $filename = basename($url);
+            $application->addMediaFromUrl($url)->usingName($filename)->toMediaCollection('documents');
             TextOutgoingMessage::make("Дякуємо, ваш файл отримано. Ви можете відправити ще, або натиснути кнопку \"Завершити\".", [
                 Button::text('Завершити', 'finish')
             ])->reply();
