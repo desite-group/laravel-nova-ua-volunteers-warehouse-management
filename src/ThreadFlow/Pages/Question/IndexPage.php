@@ -30,21 +30,24 @@ class IndexPage extends AbstractPage
                 TextOutgoingMessage::make('Дякуємо, ваш контакт отримано.')->reply();
                 $participant = $message->getContext()->getParticipant();
 
-                $userData = [
-                    'bot_user_id' => $participant->getId(),
-                    'username' => $participant->getUsername(),
-                    'first_name' => $participant->getFirstName(),
-                    'last_name' => $participant->getLastName(),
-                    'phone' => $phoneNumber,
-                    'language_code' => $participant->getLanguage(),
-                    'photo_url' => $participant->getPhotoUrl(),
-                    'is_active' => 1,
-                    'is_volunteer' => 0
-                ];
+                $botUser = BotUser::where('bot_user_id', $participant->getId())->first();
+                if (!$botUser) {
+                    $userData = [
+                        'bot_user_id' => $participant->getId(),
+                        'username' => $participant->getUsername(),
+                        'first_name' => $participant->getFirstName(),
+                        'last_name' => $participant->getLastName(),
+                        'phone' => $phoneNumber,
+                        'language_code' => $participant->getLanguage(),
+                        'photo_url' => $participant->getPhotoUrl(),
+                        'is_active' => 1,
+                        'is_volunteer' => 0
+                    ];
 
-                if ($botUser = BotUser::createFromBot($userData)) {
-                    return $this->next(MessagePage::class, ['phone' => $phoneNumber, 'bot_id' => $botUser->id])->withBreadcrumbs();
+                    $botUser = BotUser::createFromBot($userData);
                 }
+
+                return $this->next(MessagePage::class, ['phone' => $phoneNumber, 'bot_id' => $botUser->id])->withBreadcrumbs();
             }
         } else {
             TextOutgoingMessage::make('Вибачте, для продовження потрібно відправити контакт.')->reply();
