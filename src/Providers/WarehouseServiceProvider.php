@@ -18,6 +18,7 @@ use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Checkpoint as No
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\CustomsDeclaration as NovaCustomsDeclaration;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
+use Illuminate\Console\Scheduling\Schedule;
 
 class WarehouseServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,36 @@ class WarehouseServiceProvider extends ServiceProvider
             __DIR__ . '/../../database/factories/' => database_path('factories/'),
         ], 'volunteers-warehouse-database');
 
+        $this->scheduler();
+        $this->nova();
+    }
+
+    private function scheduler()
+    {
+        $this->app->booted(function () {
+            $schedule = app(Schedule::class);
+
+            $schedule->command('bot:task-reminder everyday')->dailyAt('10:30');
+
+            $schedule->command('bot:task-reminder every_week')->weeklyOn(1, '10:30');
+
+            $schedule->command('bot:task-reminder every_two_days')->weeklyOn(1, '10:30');
+            $schedule->command('bot:task-reminder every_two_days')->weeklyOn(3, '10:30');
+            $schedule->command('bot:task-reminder every_two_days')->weeklyOn(5, '10:30');
+            $schedule->command('bot:task-reminder every_two_days')->weeklyOn(7, '10:30');
+
+            $schedule->command('bot:task-reminder every_three_days')->weeklyOn(1, '10:30');
+            $schedule->command('bot:task-reminder every_three_days')->weeklyOn(4, '10:30');
+            $schedule->command('bot:task-reminder every_three_days')->weeklyOn(7, '10:30');
+
+            $schedule->command('bot:task-reminder every_two_week')->twiceMonthly(1, 16, '10:30');
+
+            $schedule->command('bot:task-reminder every_month')->monthlyOn(1, '10:30');
+        });
+    }
+
+    private function nova()
+    {
         $this->app->booted(function () {
             Nova::resources([
                 NovaCategory::class,
