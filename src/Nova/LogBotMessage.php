@@ -10,22 +10,23 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 
-class BotUser extends Resource
+class LogBotMessage extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotUser::class;
+    public static $model = \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\LogBotMessage::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'username';
+    public static $title = 'bot_user_id';
 
     /**
      * The columns that should be searched.
@@ -33,7 +34,7 @@ class BotUser extends Resource
      * @var array
      */
     public static $search = [
-        'username',
+        'bot_user_id',
     ];
 
     /**
@@ -50,7 +51,7 @@ class BotUser extends Resource
      */
     public static function label()
     {
-        return 'Користувачі Бота';
+        return 'Логування повідомлень Бота';
     }
 
     /**
@@ -60,7 +61,7 @@ class BotUser extends Resource
      */
     public static function singularLabel()
     {
-        return 'Користувач Бота';
+        return 'Логування повідомлень Бота';
     }
 
     /**
@@ -73,19 +74,12 @@ class BotUser extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make(__('Bot User Id'), 'bot_user_id')->readonly(),
-            Text::make(__('Username'), 'username')->readonly(),
-            Text::make(__('First name'), 'first_name'),
-            Text::make(__('Last Name'), 'last_name'),
-            Text::make(__('Phone'),  'phone'),
-            Password::make(__('Password'), 'password')->onlyOnForms(),
-            Text::make(__('Language Code'), 'language_code')->readonly(),
-            Text::make(__('Photo Url'), 'photo_url')->readonly()->hideFromIndex(),
+            Textarea::make(__('Message'),  'message'),
+            Text::make(__('Page Class'),  'page_class'),
+            Text::make(__('Message'),  'message')->onlyOnIndex(),
 
-            Boolean::make(__('Active'), 'is_active'),
-            Boolean::make(__('Volunteer'), 'is_volunteer'),
-            BelongsTo::make(__('Roles'), 'role', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole::class)
-                ->singularLabel(__('Roles')),
+            BelongsTo::make(__('Bot User'), 'bot_user', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser::class)
+                ->singularLabel(__('Bot User')),
         ];
     }
 

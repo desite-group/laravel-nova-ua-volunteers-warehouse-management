@@ -8,6 +8,7 @@ use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Counteragent as 
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Application as NovaApplication;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Act as NovaAct;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser as NovaBotUser;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\LogBotMessage as NovaLogBotMessage;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole as NovaBotRole;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Loading as NovaLoading;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotPermission as NovaPermission;
@@ -71,6 +72,7 @@ class WarehouseServiceProvider extends ServiceProvider
                 NovaCounteragent::class,
                 NovaApplication::class,
                 NovaAct::class,
+                NovaLogBotMessage::class,
                 NovaBotUser::class,
                 NovaBotRole::class,
                 NovaLoading::class,
