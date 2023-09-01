@@ -15,7 +15,9 @@ class IndexPage extends AbstractPage
 
         $this->reply(new TextOutgoingMessage("Вас вітає офіційний бот ГО \"Волонтерська Підтримка України\"\n\n".
             "Виберіть будь ласка потрібну дію",  [
-            ['request' => '📄 Залишити звернення на отримання допомоги'],
+            ['request' => '📄 Залишити звернення на отримання допомоги'], 
+            ['details' => 'Наші реквізити'],
+            ['language' => '🇬🇧 Change language'],
             ['question' => '📝 Написати питання чи побажання до ГО "ВПУ"'],
             ['login' => '🔒 Авторизуватись як волонтер']
         ]));
@@ -25,6 +27,10 @@ class IndexPage extends AbstractPage
     {
         if ($message->isText('request')) {
             return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Request\IndexPage::class)->withBreadcrumbs();
+        }
+
+        if ($message->isText('details')) {
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details\IndexPage::class)->withBreadcrumbs();
         }
 
         if ($message->isText('question')) {
