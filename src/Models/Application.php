@@ -28,15 +28,15 @@ class Application extends Model implements Sortable, HasMedia
     const links = [
         'military'          => [
             'google_dock'   => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
-            'file'          => 'https://stage.volunteers.support/public/files/military.docx'
+            'file'          => 'docs/military.docx'
         ],
         'organization'      => [
             'google_dock'   => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
-            'file'          => 'https://stage.volunteers.support/public/files/organization.docx'
+            'file'          => 'docs/organization.docx'
         ],
         'person'            => [
             'google_dock'   => 'https://docs.google.com/document/d/13Wbg4iDUa17k5N48GqZP2qoPvYv6IwhE7z30U3n2Xfo',
-            'file'          => 'https://stage.volunteers.support/public/files/person.docx'
+            'file'          => 'docs/person.docx'
         ]
     ];
 

@@ -48,9 +48,9 @@ class IndexPage extends AbstractPage
                 Button::text(__('International details'), 'international_details')
             ]
         ];
-        foreach ($fundraisings->where('is_general', 0)->all() as $fundraising) {
-            $fundraisingButtons[] = Button::text(__('Сollection') . ': ' . $fundraising->getTranslation('title', $lang), 'fundraising_'.$fundraising->id);
-        }
+//        foreach ($fundraisings->where('is_general', 0)->all() as $fundraising) {
+//            $fundraisingButtons[] = Button::text(__('Сollection') . ': ' . $fundraising->getTranslation('title', $lang), 'fundraising_'.$fundraising->id);
+//        }
         $fundraisingButtons[] = Button::text(__('Back'), 'back');
 
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();

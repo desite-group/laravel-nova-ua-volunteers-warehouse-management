@@ -41,9 +41,7 @@ class IndexPage extends AbstractPage
         }
 
         if ($message->isText('language')) {
-            if (!$this->session()->get('lang') || $this->session()->get('lang') === 'en') {
-                $lang = 'uk';
-            } else if ($this->session()->get('lang') === 'uk') {
+            if ($this->session()->get('lang') && $this->session()->get('lang') === 'uk') {
                 $lang = 'en';
             } else {
                 $lang = 'uk';

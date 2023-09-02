@@ -33,11 +33,8 @@ class ApplicationSamplesPage extends AbstractPage
                 "Дякуємо за розуміння."
             ];
         }
-        TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 
-        dump($file['file']);
-        FileOutgoingMessage::make($file['file'], "Звернення від {$type}")
-            ->reply();
+        FileOutgoingMessage::makeFromPath(resource_path($file['file']), $type)->reply();
 
         TextOutgoingMessage::make(
             "Також ви можете відкрити це зверення за посиланням Google Dock " . $file['google_dock']
