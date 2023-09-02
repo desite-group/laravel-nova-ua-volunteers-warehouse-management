@@ -34,7 +34,7 @@ class ConfirmationPage extends AbstractPage
             "Нагадувати: {$reminder}\n".
             "Опис завдання: \n{$this->text}\n", [
             ['send' => 'Все вірно, створити та надіслати'],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

@@ -13,7 +13,7 @@ class EmailPage extends AbstractPage
     protected function show()
     {
         TextOutgoingMessage::make('Напишіть свою Електронну адресу', [
-           Button::text('Назад', 'back')
+           Button::text(__('Back'), 'back')
         ])->reply();
     }
 

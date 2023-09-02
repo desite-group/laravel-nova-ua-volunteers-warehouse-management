@@ -13,7 +13,7 @@ class SearchPage extends AbstractPage
         $this->reply(new TextOutgoingMessage('Пошук документа по системі. Виберіть критерій пошуку', [
             ['number' => 'По номеру документа', 'date' => 'По даті'],
             ['phone' => 'По телефону отримувача', 'name' => 'По імені отримувача'],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

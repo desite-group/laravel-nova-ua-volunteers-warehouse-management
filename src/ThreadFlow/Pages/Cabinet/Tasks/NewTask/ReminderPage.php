@@ -26,7 +26,7 @@ class ReminderPage extends AbstractPage
             $buttons[$index][$key] = $type;
             $i++;
         }
-        $buttons[]['back'] = 'Назад';
+        $buttons[]['back'] = __('Back');
         $this->reply(new TextOutgoingMessage("Користувач: {$user['name']}\n".
             "Кінцевий термін виконання: {$deadline}\n".
             "Опис завдання: \n{$this->text}\n\n".

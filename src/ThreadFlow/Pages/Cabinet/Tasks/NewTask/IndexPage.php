@@ -26,7 +26,7 @@ class IndexPage extends AbstractPage
         } else {
             $message = 'Нажаль на даний момент немає користувачів кому можна створити завдання.';
         }
-        $buttons[]['back'] = 'Назад';
+        $buttons[]['back'] = __('Back');
 
         $this->reply(new TextOutgoingMessage($message, $buttons));
     }

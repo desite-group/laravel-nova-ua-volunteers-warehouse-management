@@ -18,7 +18,7 @@ class TaskPage extends AbstractPage
 
         if (!$this->task) {
             $this->reply(new TextOutgoingMessage('Нажаль дане завдання не знайдено. Будь ласка спробуйте інше.', [
-                ['back' => 'Назад']
+                ['back' => __('Back')]
             ]));
         } else {
             $reminder = Task::getReminderTypeByCode($this->task->reminder);
@@ -36,7 +36,7 @@ class TaskPage extends AbstractPage
 
             $this->reply(new TextOutgoingMessage($message, [
                 ['completed' => 'Завдання виконане', 'later' => 'Нагадати пізніше'],
-                ['canceled' => 'Завдання неможливо виконати', 'back' => 'Назад']
+                ['canceled' => 'Завдання неможливо виконати', 'back' => __('Back')]
             ]));
         }
     }

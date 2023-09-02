@@ -4,6 +4,7 @@ namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Page
 
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Login\LoginPage;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
+use SequentSoft\ThreadFlow\Keyboard\Button;
 use SequentSoft\ThreadFlow\Messages\Outgoing\Regular\TextOutgoingMessage;
 use SequentSoft\ThreadFlow\Page\AbstractPage;
 
@@ -11,16 +12,18 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage("Дисклеймер: Це АЛЬФА версія бота ще не має повного функціорналу. На даний момент побудована лише ще не фінальна структура майбутнього функціоналу."));
-
-        $this->reply(new TextOutgoingMessage("Вас вітає офіційний бот ГО \"Волонтерська Підтримка України\"\n\n".
-            "Виберіть будь ласка потрібну дію",  [
-            ['request' => '📄 Залишити звернення на отримання допомоги'], 
-            ['details' => 'Наші реквізити'],
-            ['language' => '🇬🇧 Change language'],
-            ['question' => '📝 Написати питання чи побажання до ГО "ВПУ"'],
-            ['login' => '🔒 Авторизуватись як волонтер']
-        ]));
+        TextOutgoingMessage::make( __('Welcome to the official bot of the non-profit organization "Volunteers Support Ukraine"') . "\n\n".
+            __('Please select the action'), [
+            [
+                Button::text('📄 '.  __('Leave an application for assistance'), 'request'),
+                Button::text( '🍩 ' . __('Our details'), 'details')
+            ],
+            [
+                Button::text(__('🇺🇦 Змінити мову'), 'language'),
+                Button::text('📝 ' . __('Write questions or wishes'), 'question')
+            ],
+            Button::text('🔒 ' . __('Login as a volunteer'), 'login')
+        ])->reply();
     }
 
     protected function handleMessage(IncomingRegularMessageInterface $message)
@@ -35,6 +38,19 @@ class IndexPage extends AbstractPage
 
         if ($message->isText('question')) {
             return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Question\IndexPage::class)->withBreadcrumbs();
+        }
+
+        if ($message->isText('language')) {
+            if (!$this->session()->get('lang') || $this->session()->get('lang') === 'en') {
+                $lang = 'uk';
+            } else if ($this->session()->get('lang') === 'uk') {
+                $lang = 'en';
+            } else {
+                $lang = 'uk';
+            }
+
+            $this->session()->set('lang', $lang);
+            app('translator')->setLocale($lang);
         }
 
         if ($message->isText('login')) {

@@ -16,7 +16,7 @@ class CommentPage extends AbstractPage
         $this->reply(new TextOutgoingMessage("Дата та час: {$datetime}\n".
             "Локація: {$this->location}\n\n".
             "Напишіть короткий опис даної події", [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

@@ -18,7 +18,7 @@ class MessagePage extends AbstractPage
     protected function show()
     {
         TextOutgoingMessage::make("Напишіть будь ласка текст вашого запитання, пропозиції чи скарги.", [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

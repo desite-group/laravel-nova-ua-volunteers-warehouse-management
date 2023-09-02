@@ -12,7 +12,7 @@ class IndexPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage('Виберіть дію яку потрібно виконати', [
             ['by_name' => 'Пошук по назві', 'by_article' => 'Пошук по артикулу'],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

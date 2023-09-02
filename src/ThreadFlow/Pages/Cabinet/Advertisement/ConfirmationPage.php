@@ -21,7 +21,7 @@ class ConfirmationPage extends AbstractPage
             'Текст який буде надіслано: ')->reply();
         TextOutgoingMessage::make($this->text, [
             Button::text('Все вірно, надіслати', 'send'),
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

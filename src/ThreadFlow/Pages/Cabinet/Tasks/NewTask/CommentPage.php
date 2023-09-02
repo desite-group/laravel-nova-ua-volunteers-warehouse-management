@@ -14,7 +14,7 @@ class CommentPage extends AbstractPage
         $user = $this->user;
         $this->reply(new TextOutgoingMessage("Користувач: {$user['name']}\n\n".
             "Напишіть короткий опис завдання", [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

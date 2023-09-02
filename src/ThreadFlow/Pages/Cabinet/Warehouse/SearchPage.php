@@ -14,7 +14,7 @@ class SearchPage extends AbstractPage
     {
         $type = $this->type === 'article' ? 'артикул' : 'назву';
         $this->reply(new TextOutgoingMessage('Введіть '.$type.' для пошуку', [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

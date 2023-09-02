@@ -11,7 +11,7 @@ class OutgoingPage extends AbstractPage
     protected function show()
     {
         $this->reply(new TextOutgoingMessage('Створення нового акту на видачу', [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

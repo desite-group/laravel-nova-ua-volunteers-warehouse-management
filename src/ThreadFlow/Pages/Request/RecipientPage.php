@@ -27,7 +27,7 @@ class RecipientPage extends AbstractPage
         }
 
         TextOutgoingMessage::make($message, [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

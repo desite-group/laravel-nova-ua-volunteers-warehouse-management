@@ -14,7 +14,7 @@ class IndexPage extends AbstractPage
     {
         TextOutgoingMessage::make('Для початку натисніть відправити контакт', [
             Button::contact('Відправити контакт', 'contact'),
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

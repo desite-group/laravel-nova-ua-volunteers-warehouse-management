@@ -35,11 +35,11 @@ class ApplicationUploadPage extends AbstractPage
         }
 
         TextOutgoingMessage::make(implode("\n", $messageArray), [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
 
         TextOutgoingMessage::make("Будь ласка, відправте файл звернення від {$type}", [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

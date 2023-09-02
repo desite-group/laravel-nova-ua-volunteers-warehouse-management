@@ -11,7 +11,7 @@ class IndexPage extends AbstractPage
     protected function show()
     {
         $this->reply(new TextOutgoingMessage('Цей розділ ще в розробці.', [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

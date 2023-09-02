@@ -14,7 +14,7 @@ class IndexPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage("Планується завантаження або розвантаження?\n".
             "Напишіть дату та час збору у форматі 01.01.2023 12:00", [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

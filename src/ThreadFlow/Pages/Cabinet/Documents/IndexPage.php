@@ -13,7 +13,7 @@ class IndexPage extends AbstractPage
         $this->reply(new TextOutgoingMessage('Виберіть дію з документами', [
             ['outgoing' => 'Новий акт на видачу', 'incoming' => 'Новий акт на отримання'],
             ['search' => 'Пошук документа'],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

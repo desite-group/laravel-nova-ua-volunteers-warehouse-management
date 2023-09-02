@@ -19,7 +19,7 @@
         "spatie/laravel-medialibrary": "^9",
         "digital-creative/conditional-container": "*",
         "digital-creative/nova-json-wrapper": "*",
-        "sequentsoft/threadflow": "^0.2.4",
+        "sequentsoft/threadflow": "^0.2.5",
         "sequentsoft/threadflow-telegram": "^0.0.9"
     },
     "extra": {

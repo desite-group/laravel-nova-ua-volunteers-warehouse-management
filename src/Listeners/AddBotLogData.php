@@ -57,7 +57,7 @@ class AddBotLogData
 
         LogBotMessage::create([
             'bot_user_id' => $botUser->id,
-            'message' => $this->getMessageText($message),
+            'message' => mb_substr($this->getMessageText($message), 0, 255),
             'page_class' => $pageClass,
         ]);
     }

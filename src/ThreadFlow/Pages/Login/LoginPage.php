@@ -14,7 +14,7 @@ class LoginPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage('Для авторизації натисніть кнопку відправити контакт', [
             ['contact' => Button::contact('Відправити контакт')],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

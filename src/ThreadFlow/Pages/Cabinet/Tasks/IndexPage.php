@@ -22,7 +22,7 @@ class IndexPage extends AbstractPage
         $this->reply(new TextOutgoingMessage("Планувальник завдань ГО \"ВПУ\"\n".
             "Виберіть будь ласка дію щоб продовжити", [
             $buttons,
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

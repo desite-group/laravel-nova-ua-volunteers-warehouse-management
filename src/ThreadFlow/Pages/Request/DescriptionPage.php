@@ -24,7 +24,7 @@ class DescriptionPage extends AbstractPage
             ];
         }
         TextOutgoingMessage::make(implode("\n", $messageArray), [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

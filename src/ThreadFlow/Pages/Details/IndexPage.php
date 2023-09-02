@@ -2,6 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details;
 
+use App\Models\Detail;
+use App\Models\Fundraising;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotUser;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
 use SequentSoft\ThreadFlow\Keyboard\Button;
@@ -12,31 +14,48 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
+        $lang = $this->session()->get('lang');
+        $generalDetails = Detail::whereIn('slug', ['mono', 'privat', 'paypal'])->get();
+        $fundraisings = Fundraising::active()->opened()->get();
+
         $messageArray = [
-            "Громадська Організація “Волонтерська Підтримка України”",
-            "Україна, 79054, Львівська обл., місто Львів, вул.Гірника О., будинок 1",
-            "Код ЄДРПОУ 44665073",
-            "р/р UA463052990000026002000809161 в АТ КБ \"ПРИВАТБАНК\"",
-            "www.volunteers.support\n",
-            "Голова ГО \"ВПУ\" Жила Роман Степанович"
+            "Non-profit Organization \"Volunteers Support Ukraine\"",
+            "Below are links to official bank accounts\n"
         ];
+
+        if ($mono = $generalDetails->where('slug', 'mono')->first()) {
+            $messageArray[] = __("Monobank jar") . ' ' . $mono->link . "\n";
+        }
+
+        if ($privat = $generalDetails->where('slug', 'privat')->first()) {
+            $messageArray[] = __("Privat24") . ' ' . $privat->link . "\n";
+        }
+
+        if ($paypal = $generalDetails->where('slug', 'paypal')->first()) {
+            $messageArray[] = "PayPal " . $paypal->link . "\n";
+        }
+
+        if ($fundraising = $fundraisings->where('is_general', 1)->first()) {
+            $messageArray[] = __('Active collection on') . ': ' . $fundraising->getTranslation('title', $lang) . "\n";
+            $messageArray[] = __('Collected') .": " . $fundraising->finalCollected . ' ' . __('UAH')
+                . ' / ' . $fundraising->goal . ' ' . __('UAH') ."\n";
+            $messageArray[] = __('Support') .": " . $fundraising->link . "\n";
+        }
+
+        $fundraisingButtons = [
+            [
+                Button::text(__('Details Ukraine'), 'ukrainian_details'),
+                Button::text(__('International details'), 'international_details')
+            ]
+        ];
+        foreach ($fundraisings->where('is_general', 0)->all() as $fundraising) {
+            $fundraisingButtons[] = Button::text(__('Сollection') . ': ' . $fundraising->getTranslation('title', $lang), 'fundraising_'.$fundraising->id);
+        }
+        $fundraisingButtons[] = Button::text(__('Back'), 'back');
+
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 
-        TextOutgoingMessage::make('Оберіть дію', [
-            [
-                Button::contact('Монобанк', 'contact'),
-                Button::contact('Приватбанк', 'contact')
-            ],
-            [
-                Button::contact('Paypal', 'contact'),
-                Button::contact('Активний збір', 'contact')
-            ],
-            [
-                Button::contact('Міжнародні перекази', 'contact'),
-                Button::contact('Усі збіри', 'contact')
-            ],
-            Button::text('Назад', 'back')
-        ])->reply();
+        TextOutgoingMessage::make(__('More details'), $fundraisingButtons)->reply();
     }
 
     protected function handleMessage(IncomingRegularMessageInterface $message)
@@ -45,40 +64,16 @@ class IndexPage extends AbstractPage
             return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
         }
 
-        if ($message->isContact() && !empty($message->getPhoneNumber())) {
-            $phoneNumber = $message->getPhoneNumber();
-            if ($this->validatePhoneNumber($phoneNumber)) {
-                TextOutgoingMessage::make('Дякуємо, ваш контакт отримано.')->reply();
-                $participant = $message->getContext()->getParticipant();
+        if ($message->isText('ukrainian_details')) {
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details\UkrainianDetailsPage::class)
+                ->withBreadcrumbs();
+        }
 
-                $botUser = BotUser::where('bot_user_id', $participant->getId())->first();
-                if (!$botUser) {
-                    $userData = [
-                        'bot_user_id' => $participant->getId(),
-                        'username' => $participant->getUsername(),
-                        'first_name' => $participant->getFirstName(),
-                        'last_name' => $participant->getLastName(),
-                        'phone' => $phoneNumber,
-                        'language_code' => $participant->getLanguage(),
-                        'photo_url' => $participant->getPhotoUrl(),
-                        'is_active' => 1,
-                        'is_volunteer' => 0
-                    ];
-
-                    $botUser = BotUser::createFromBot($userData);
-                }
-
-                return $this->next(MessagePage::class, ['phone' => $phoneNumber, 'bot_id' => $botUser->id])->withBreadcrumbs();
-            }
-        } else {
-            TextOutgoingMessage::make('Вибачте, для продовження потрібно відправити контакт.')->reply();
+        if ($message->isText('international_details')) {
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details\InternationalDetailsPage::class)
+                ->withBreadcrumbs();
         }
 
         $this->show();
-    }
-
-    private function validatePhoneNumber(string $phoneNumber): bool
-    {
-        return true;
     }
 }

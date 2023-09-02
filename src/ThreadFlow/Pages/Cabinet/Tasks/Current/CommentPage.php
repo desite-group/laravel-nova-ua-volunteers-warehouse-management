@@ -23,7 +23,7 @@ class CommentPage extends AbstractPage
         ]);
 
         $this->reply(new TextOutgoingMessage($message, [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

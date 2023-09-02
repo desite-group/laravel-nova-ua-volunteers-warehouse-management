@@ -11,7 +11,7 @@ class IndexPage extends AbstractPage
     protected function show()
     {
         $this->reply(new TextOutgoingMessage('Напишіть текст оголошення для усіх волонтерів', [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

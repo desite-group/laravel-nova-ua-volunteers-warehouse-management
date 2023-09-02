@@ -13,7 +13,7 @@ class ContactPhonePage extends AbstractPage
     protected function show()
     {
         TextOutgoingMessage::make("Вкажіть телефон контактної особи  для зворотнього зв'язку", [
-            Button::text('Назад', 'back')
+            Button::text(__('Back'), 'back')
         ])->reply();
     }
 

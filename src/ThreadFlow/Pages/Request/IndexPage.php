@@ -15,7 +15,7 @@ class IndexPage extends AbstractPage
            Button::text('Запит від Військової Частини', 'military'),
            Button::text('Запит від Організації', 'organization'),
            Button::text('Запит від фізичної особи (у т.ч. військовослужбовця)', 'person'),
-           Button::text('Назад', 'back')
+           Button::text(__('Back'), 'back')
         ])->reply();
     }
 

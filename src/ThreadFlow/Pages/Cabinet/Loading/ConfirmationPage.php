@@ -28,7 +28,7 @@ class ConfirmationPage extends AbstractPage
             "Локація: {$this->location}\n\n".
             $this->text, [
             ['send' => 'Все вірно, надіслати'],
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 

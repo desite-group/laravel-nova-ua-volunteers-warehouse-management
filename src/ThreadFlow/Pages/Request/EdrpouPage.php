@@ -28,7 +28,7 @@ class EdrpouPage extends AbstractPage
                 break;
         }
 
-        TextOutgoingMessage::make($message, [Button::text('Назад', 'back')])->reply();
+        TextOutgoingMessage::make($message, [Button::text(__('Back'), 'back')])->reply();
     }
 
     protected function handleMessage(IncomingRegularMessageInterface $message)

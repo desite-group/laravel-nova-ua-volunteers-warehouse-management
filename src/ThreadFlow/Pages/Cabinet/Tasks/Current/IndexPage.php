@@ -27,7 +27,7 @@ class IndexPage extends AbstractPage
         } else {
             $message = 'Ви молодець! Усі ваші завдання виконані.';
         }
-        $buttons[]['back'] = 'Назад';
+        $buttons[]['back'] = __('Back');
 
         $this->reply(new TextOutgoingMessage($message, $buttons));
     }

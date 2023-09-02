@@ -18,7 +18,7 @@ class EnterPasswordPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage("Для продовження, введіть пароль який ви вказали при реєстрації\n".
             "якщо це ваша перша авторизація, придумайте пароль та введіть його для продовдження реєстрації", [
-            ['back' => 'Назад']
+            ['back' => __('Back')]
         ]));
     }
 
