@@ -19,10 +19,10 @@ class RecipientPersonPage extends AbstractPage
         $message = '';
         switch ($this->data['type']) {
             case 'military':
-                $message = 'Вкажіть ПІБ командира, яка потребує гуманітарної допомоги';
+                $message = __('Indicate the name of the unit commander in need of humanitarian assistance');
                 break;
             case 'organization':
-                $message = 'Вкажіть ПІБ директора організації, яка потребує гуманітарної допомоги';
+                $message = __('Indicate the name of the director of the organization that needs humanitarian assistance');
                 break;
         }
 

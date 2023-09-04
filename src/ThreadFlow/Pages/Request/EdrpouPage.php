@@ -19,12 +19,12 @@ class EdrpouPage extends AbstractPage
         $message = '';
         switch ($this->data['type']) {
             case 'organization':
-                $message = 'Вкажіть код ЄДРПОУ організації яка потребує гуманітарної допомоги';
+                $message = __('Specify the EDRPOU code of the organization that needs humanitarian assistance');
                 break;
 
             case 'person':
-                $message = "Вкажіть паспортні дані особи яка потребує гуманітарної допомоги\n".
-                        "(Серія та номер паспорта, орган що видав паспорт та дату видачі)";
+                $message = __("Specify the passport data of the person in need of humanitarian assistance") . "\n" .
+                        __("(Passport series and number, passport issuing authority and date of issue)");
                 break;
         }
 

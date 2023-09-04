@@ -12,7 +12,7 @@ class ContactPersonPage extends AbstractPage
     protected $data;
     protected function show()
     {
-        TextOutgoingMessage::make("Вкажіть прізвище, ім'я, по батькові контактної особи для зворотнього зв'язку", [
+        TextOutgoingMessage::make(__("Specify the name, surname, patronymic of the contact person for feedback"), [
             Button::text(__('Back'), 'back')
         ])->reply();
     }
