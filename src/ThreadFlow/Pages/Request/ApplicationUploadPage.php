@@ -13,8 +13,10 @@ class ApplicationUploadPage extends AbstractPage
     protected $application_id;
     protected function show()
     {
+        $lang = $this->session()->get('lang');
+
         $application = Application::where('id', $this->application_id)->firstOrFail();
-        $type = Application::getTypeByCode($application->type);
+        $type = Application::getTypeByCode($application->type, $lang);
 
         if ($application->type === 'person') {
             $messageArray = [

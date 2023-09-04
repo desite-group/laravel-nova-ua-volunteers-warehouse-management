@@ -13,20 +13,53 @@ class Task extends Model
     use HasFactory;
 
     const statuses = [
-        'new' => 'Нове',
-        'completed' => 'Виконано',
-        'canceled' => 'Відмінено',
-        'later' => 'Відкладено'
+        'new' => [
+            'uk' => 'Нове',
+            'en' => 'New'
+        ],
+        'completed' => [
+            'uk' => 'Виконано',
+            'en' => 'Completed'
+        ],
+        'canceled' => [
+            'uk' => 'Відмінено',
+            'en' => 'Canceled'
+        ],
+        'later' => [
+            'uk' => 'Відкладено',
+            'en' => 'Later'
+        ]
     ];
 
     const remainderTypes = [
-        'everyday' => 'Щодня',
-        'every_week' => 'Щотижня',
-        'every_two_days' => 'Кожні 2 дні',
-        'every_three_days' => 'Кожні 3 дні',
-        'every_two_week' => 'Кожні 2 тижня',
-        'every_month' => 'Щомісяця',
-        'without' => 'Не нагадувати'
+        'everyday' => [
+            'uk' => 'Щодня',
+            'en' => 'Щодня'
+        ],
+        'every_week' => [
+            'uk' => 'Щотижня',
+            'en' => 'Every week'
+        ],
+        'every_two_days' => [
+            'uk' => 'Кожні 2 дні',
+            'en' => 'Every 2 days'
+        ],
+        'every_three_days' => [
+            'uk' => 'Кожні 3 дні',
+            'en' => 'Every 3 days'
+        ],
+        'every_two_week' => [
+            'uk' => 'Кожні 2 тижня',
+            'en' => 'Every 2 weeks'
+        ],
+        'every_month' => [
+            'uk' => 'Щомісяця',
+            'en' => 'Every month'
+        ],
+        'without' => [
+            'uk' => 'Не нагадувати',
+            'en' => 'Do not remind'
+        ]
     ];
 
     protected $casts = [
@@ -43,14 +76,22 @@ class Task extends Model
         return self::remainderTypes;
     }
 
-    public static function getReminderTypeByCode(?string $code): string
+    public static function getReminderTypeByCode(?string $code, ?string $lang = null): string
     {
-        return self::remainderTypes[$code] ?? 'Не встановлено';
+        if (!$lang) {
+            $lang = config('app.locale');
+        }
+
+        return self::remainderTypes[$code][$lang] ?? $lang === 'uk' ? 'Не встановлено' : 'Not selected';
     }
 
-    public static function getStatusByCode(?string $code): ?string
+    public static function getStatusByCode(?string $code, ?string $lang = null): ?string
     {
-        return self::statuses[$code] ?? null;
+        if (!$lang) {
+            $lang = config('app.locale');
+        }
+
+        return self::statuses[$code][$lang] ?? null;
     }
 
     public function getStatusTitleAttribute()

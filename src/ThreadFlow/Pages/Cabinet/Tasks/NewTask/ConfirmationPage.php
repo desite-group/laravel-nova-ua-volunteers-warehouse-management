@@ -22,7 +22,7 @@ class ConfirmationPage extends AbstractPage
         $deadline = $this->deadline
             ? $this->deadline->isoFormat('dddd Do MMMM YYYY HH:mm')
             : 'Не встановлено';
-        $reminder = Task::getReminderTypeByCode($this->reminder);
+        $reminder = Task::getReminderTypeByCode($this->reminder, $this->session()->get('lang'));
 
         $this->reply(new TextOutgoingMessage(
             "Завдання буде створене а повідомлення буде відправлено відповідному користувачу.\n".
@@ -57,7 +57,7 @@ class ConfirmationPage extends AbstractPage
                     $deadline = $this->deadline
                         ? $this->deadline->isoFormat('dddd Do MMMM YYYY HH:mm')
                         : 'Не встановлено';
-                    $reminder = Task::getReminderTypeByCode($this->reminder);
+                    $reminder = Task::getReminderTypeByCode($this->reminder, $this->session()->get('lang'));
                     $messageArray = [
                         "Для вас створено нове завдання\n",
                         "Автор завдання: {$user['name']}",

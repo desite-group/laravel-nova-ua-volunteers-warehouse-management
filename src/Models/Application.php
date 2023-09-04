@@ -20,18 +20,27 @@ class Application extends Model implements Sortable, HasMedia
     use HasFactory, InteractsWithMedia, SortableTrait;
 
     const types = [
-        'military'      => 'Військової Частини',
-        'organization'  => 'Організації',
-        'person'        => 'фізичної особи (у т.ч. військовослужбовця)'
+        'military'      => [
+            'uk' => 'Військової Частини',
+            'en' => 'Military Unit'
+        ],
+        'organization'  => [
+            'uk' => 'Організації',
+            'en' => 'Organizations'
+        ],
+        'person'        => [
+            'uk' => 'Фізичної особи (у т.ч. військовослужбовця)',
+            'en' => 'Person (including military personnel)'
+        ]
     ];
 
     const links = [
         'military'          => [
-            'google_dock'   => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
+            'google_dock'   => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
             'file'          => 'docs/military.docx'
         ],
         'organization'      => [
-            'google_dock'   => 'https://docs.google.com/document/d/1lZ_gjlVtiK53INY303xiRyy7oV0PBMq4gVZ5DuPwv8E',
+            'google_dock'   => 'https://docs.google.com/document/d/1h-NDCGVQLlbk3IIeZpXwdKmbcmjfsuKxKl1TPacyjLs',
             'file'          => 'docs/organization.docx'
         ],
         'person'            => [
@@ -93,9 +102,13 @@ class Application extends Model implements Sortable, HasMedia
         $this->addMediaCollection('documents');
     }
 
-    public static function getTypeByCode(?string $code): ?string
+    public static function getTypeByCode(?string $code, ?string $lang = null): ?string
     {
-        return self::types[$code] ?? null;
+        if (!$lang) {
+            $lang = config('app.locale');
+        }
+
+        return self::types[$code][$lang] ?? null;
     }
 
     public static function getFileLinkByCode(?string $code): ?array

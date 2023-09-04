@@ -21,7 +21,13 @@ class LocalizationBotUpdate
      */
     public function handle(string $channelName, $event)
     {
-        $lang = $event->getSession()->get('lang') ?? 'uk';
+        if (!$event->getSession()->get('lang')) {
+            $lang = 'uk';
+            $event->getSession()->set('lang', $lang);
+        } else {
+            $lang = $event->getSession()->get('lang');
+        }
+
         app('translator')->setLocale($lang);
     }
 }

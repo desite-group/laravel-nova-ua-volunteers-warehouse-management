@@ -15,9 +15,11 @@ class ConfirmationPage extends AbstractPage
 
     protected function show()
     {
-        $oldStatus = Task::getStatusByCode($this->task->status);
-        $status = Task::getStatusByCode($this->status);
-        $reminder = Task::getReminderTypeByCode($this->task->reminder);
+        $lang = $this->session()->get('lang');
+
+        $oldStatus = Task::getStatusByCode($this->task->status, $lang);
+        $status = Task::getStatusByCode($this->status, $lang);
+        $reminder = Task::getReminderTypeByCode($this->task->reminder, $lang);
         $deadline = $this->task->deadline
             ? $this->task->deadline->locale('uk')->isoFormat('dddd Do MMMM YYYY HH:mm')
             : 'Не встановлено';

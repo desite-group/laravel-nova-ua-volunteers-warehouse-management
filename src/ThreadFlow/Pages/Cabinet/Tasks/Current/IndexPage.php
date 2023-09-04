@@ -52,7 +52,7 @@ class IndexPage extends AbstractPage
         $messages = [];
         $buttons = [];
         foreach (Task::where('bot_user_id', $this->session()->get('user_id'))->active()->get() as $task){
-            $reminder = Task::getReminderTypeByCode($task->reminder);
+            $reminder = Task::getReminderTypeByCode($task->reminder, $this->session()->get('lang'));
             $deadline = $task->deadline
                 ? $task->deadline->locale('uk')->isoFormat('dddd Do MMMM YYYY HH:mm')
                 : 'Не встановлено';

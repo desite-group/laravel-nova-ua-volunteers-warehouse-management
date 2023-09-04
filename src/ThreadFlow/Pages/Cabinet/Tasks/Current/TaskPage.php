@@ -21,7 +21,7 @@ class TaskPage extends AbstractPage
                 ['back' => __('Back')]
             ]));
         } else {
-            $reminder = Task::getReminderTypeByCode($this->task->reminder);
+            $reminder = Task::getReminderTypeByCode($this->task->reminder, $this->session()->get('lang'));
             $deadline = $this->task->deadline
                 ? $this->task->deadline->locale('uk')->isoFormat('dddd Do MMMM YYYY HH:mm')
                 : 'Не встановлено';

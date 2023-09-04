@@ -51,8 +51,10 @@ class BotTaskReminder extends Command
 
         $tasks = Task::where('reminder', $reminder)->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
-            $status = Task::getStatusByCode($task->status);
-            $reminder = Task::getReminderTypeByCode($task->reminder);
+            $lang = $this->session()->get('lang');
+
+            $status = Task::getStatusByCode($task->status, $lang);
+            $reminder = Task::getReminderTypeByCode($task->reminder, $lang);
 
             if ($task->deadline < Carbon::now()) {
                 $messageArray = [

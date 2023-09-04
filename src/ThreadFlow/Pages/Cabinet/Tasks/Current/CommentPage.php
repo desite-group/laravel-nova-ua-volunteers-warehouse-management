@@ -14,7 +14,7 @@ class CommentPage extends AbstractPage
 
     protected function show()
     {
-        $status = Task::getStatusByCode($this->status);
+        $status = Task::getStatusByCode($this->status, $this->session()->get('lang'));
         $message = implode("\n", [
             "Актуалізація статусу для завдання №{$this->task->id}",
             "Новий статус: {$status}\n",

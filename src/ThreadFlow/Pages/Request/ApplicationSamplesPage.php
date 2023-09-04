@@ -13,7 +13,7 @@ class ApplicationSamplesPage extends AbstractPage
     protected $data;
     protected function show()
     {
-        $type = Application::getTypeByCode($this->data['type']);
+        $type = Application::getTypeByCode($this->data['type'], $this->session()->get('lang'));
         $file = Application::getFileLinkByCode($this->data['type']);
         if ($this->data['type'] === 'person') {
             $messageArray = [
