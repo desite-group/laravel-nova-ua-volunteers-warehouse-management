@@ -35,7 +35,7 @@ class MessagePage extends AbstractPage
         ]);
         $botUser->questions()->save($question);
 
-        TextOutgoingMessage::make("Дякуємо, ваше ми отримали ваше звернення. Надішлемо вам відповідь найближчим часом.")->reply();
+        TextOutgoingMessage::make("Дякуємо, ваше повідомлення збережено. Ви отримаєте відповідь найближчим часом.")->reply();
         return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
     }
 }
