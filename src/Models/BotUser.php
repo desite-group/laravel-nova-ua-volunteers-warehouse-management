@@ -41,6 +41,11 @@ class BotUser extends Model
         return $this->hasMany(Question::class);
     }
 
+    public function log_messages()
+    {
+        return $this->hasMany(LogBotMessage::class);
+    }
+
     /**
      * The roles that belong to the user.
      */
