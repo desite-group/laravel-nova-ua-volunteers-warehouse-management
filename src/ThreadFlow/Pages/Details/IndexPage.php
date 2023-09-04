@@ -19,8 +19,8 @@ class IndexPage extends AbstractPage
         $fundraisings = Fundraising::active()->opened()->get();
 
         $messageArray = [
-            "Non-profit Organization \"Volunteers Support Ukraine\"",
-            "Below are links to official bank accounts\n"
+            __('Non-profit Organization "Volunteers Support Ukraine"'),
+            __('Below are links to official bank accounts') ."\n"
         ];
 
         if ($mono = $generalDetails->where('slug', 'mono')->first()) {
@@ -48,9 +48,9 @@ class IndexPage extends AbstractPage
                 Button::text(__('International details'), 'international_details')
             ]
         ];
-//        foreach ($fundraisings->where('is_general', 0)->all() as $fundraising) {
-//            $fundraisingButtons[] = Button::text(__('Сollection') . ': ' . $fundraising->getTranslation('title', $lang), 'fundraising_'.$fundraising->id);
-//        }
+        foreach ($fundraisings->where('is_general', 0)->all() as $fundraising) {
+            $fundraisingButtons[] = Button::text(__('Collection') . ': ' . $fundraising->getTranslation('title', $lang), 'info_fundraising_'.$fundraising->id);
+        }
         $fundraisingButtons[] = Button::text(__('Back'), 'back');
 
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
@@ -71,6 +71,14 @@ class IndexPage extends AbstractPage
 
         if ($message->isText('international_details')) {
             return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details\InternationalDetailsPage::class)
+                ->withBreadcrumbs();
+        }
+
+        if (str_contains($message->getText(), '_fundraising_')) {
+            $fundraising_id = str_replace('info_fundraising_', '', $message->getText());
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Details\FundraisingPage::class, [
+                'fundraising_id' => $fundraising_id
+            ])
                 ->withBreadcrumbs();
         }
 
