@@ -11,10 +11,10 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
-        TextOutgoingMessage::make('Виберіть тип який відповідає вашому запиту', [
-           Button::text('Запит від Військової Частини', 'military'),
-           Button::text('Запит від Організації', 'organization'),
-           Button::text('Запит від фізичної особи (у т.ч. військовослужбовця)', 'person'),
+        TextOutgoingMessage::make(__('Choose the type that corresponds to your request'), [
+           Button::text(__('Request from the Military Unit'), 'military'),
+           Button::text(__('Request from the Organization'), 'organization'),
+           Button::text(__('Request from a individual (including military personnel'), 'person'),
            Button::text(__('Back'), 'back')
         ])->reply();
     }
@@ -29,7 +29,7 @@ class IndexPage extends AbstractPage
             return $this->next(ApplicationSamplesPage::class, ['data' => ['type' => $message->getText()]])->withBreadcrumbs();
         }
 
-        TextOutgoingMessage::make('Вибраний не вірний тип. Спробуйте скористатись клавіатурою.')->reply();
+        TextOutgoingMessage::make(__('The type is not correct. Try using the keyboard.'))->reply();
         $this->show();
     }
 }

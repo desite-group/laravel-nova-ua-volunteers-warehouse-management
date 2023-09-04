@@ -17,27 +17,29 @@ class ApplicationSamplesPage extends AbstractPage
         $file = Application::getFileLinkByCode($this->data['type']);
         if ($this->data['type'] === 'person') {
             $messageArray = [
-                "Вам буде надіслано файл шаблон для звернення від {$type}",
-                "На останньому кроці вам потрібно буде завантажити підписаний документ.\n",
-                "Завантажне, роздрукуйте або напишіть від руки та поставте свій підпис.\n",
-                "УВАГА! Звернення без прикріпленого підписаного файлу розглядатись не будуть.",
-                "Дякуємо за розуміння."
+                __("You will be sent a file with a template for an appeal from") . ' ' . $type,
+                __("At the last step, you will need to upload a signed document") . ".\n",
+                __("Download, print or handwrite and sign the form") . ".\n",
+                __("ATTENTION! Applications without the attached signed file will not be considered."),
+                __("Thanks for your understanding.")
             ];
         } else {
             $messageArray = [
-                "Вам буде надіслано файл шаблон для звернення від {$type}",
-                "На останньому кроці вам потрібно буде завантажити підписаний документ.\n",
-                "Завантажне, заповніть даний шаблон, роздрукуйте, поставте підпис та печатку.\n",
-                "УВАГА! Документ вважається дійсним за наявності в ньому ПІДПИСУ і ПЕЧАТКИ.",
-                "Звернення без прикріпленого підписаного файлу розглядатись не будуть.",
-                "Дякуємо за розуміння."
+                __("You will be sent a file with a template for an appeal from") . ' ' . $type,
+                __("At the last step, you will need to upload a signed document") . ".\n",
+                __("Download, fill out this template, print, sign and stamp") . "\n",
+                __("ATTENTION! The document is considered valid if it contains a SIGNATURE and a SEAL."),
+                __("Applications without an attached signed file will not be considered."),
+                __("Thanks for your understanding.")
             ];
         }
+
+        TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 
         FileOutgoingMessage::makeFromPath(resource_path($file['file']), $type)->reply();
 
         TextOutgoingMessage::make(
-            "Також ви можете відкрити це зверення за посиланням Google Dock " . $file['google_dock']
+            __("You can also open this application at the Google Dock link") . ' ' . $file['google_dock']
         )->reply();
 
         return $this->next(RecipientPage::class, ['data' => $this->data])->withBreadcrumbs();
