@@ -12,7 +12,7 @@ class ContactPhonePage extends AbstractPage
     protected $data;
     protected function show()
     {
-        TextOutgoingMessage::make("Вкажіть телефон контактної особи  для зворотнього зв'язку", [
+        TextOutgoingMessage::make(__("Provide the phone number of the contact person for feedback"), [
             Button::text(__('Back'), 'back')
         ])->reply();
     }

@@ -8,6 +8,7 @@ use SequentSoft\ThreadFlow\Contracts\Chat\ParticipantInterface;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
 use SequentSoft\ThreadFlow\Messages\Outgoing\Regular\TextOutgoingMessage;
 use SequentSoft\ThreadFlow\Page\AbstractPage;
+use SequentSoft\ThreadFlow\Keyboard\Button;
 
 class EnterPasswordPage extends AbstractPage
 {
@@ -16,9 +17,19 @@ class EnterPasswordPage extends AbstractPage
 
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage("Для продовження, введіть пароль який ви вказали при реєстрації\n".
-            "якщо це ваша перша авторизація, придумайте пароль та введіть його для продовдження реєстрації", [
-            ['back' => __('Back')]
+        $participant = $message->getContext()->getParticipant();
+        
+        $messageArray = [
+            __("To continue, enter the password you specified during registration")
+        ];
+        if (!$this->validateUserForAuth($participant->getId())) {
+            $messageArray = [
+                __("The account does not exist yet. To continue registration, create and enter a password"),
+                __("Write down this password, it is required for authorisation and cannot be recovered.")
+            ];
+        }
+        $this->reply(new TextOutgoingMessage(implode("\n", $messageArray), [
+            Button::text(__('Back'), 'back')
         ]));
     }
 
@@ -50,7 +61,7 @@ class EnterPasswordPage extends AbstractPage
             }
 
             $this->reply(
-                new TextOutgoingMessage('Не вірний формат пароля, будь ласка спробуйте інший.', [
+                new TextOutgoingMessage(__('Password format is not valid, please try another one.'), [
                     ['back' => 'Back'],
                 ])
             );
@@ -91,12 +102,12 @@ class EnterPasswordPage extends AbstractPage
         ];
 
         if ($botUser = BotUser::createFromBot($userData)) {
-            $this->reply(new TextOutgoingMessage("Дякуємо. Реєстрація успішна"));
+            $this->reply(new TextOutgoingMessage(__("Thank you. Registration is successful")));
 
             $this->session()->set('user_id', $botUser->id);
             return true;
         } else {
-            $this->reply(new TextOutgoingMessage('Вибачте, ви не можете зареєструватись за цими даними.'));
+            $this->reply(new TextOutgoingMessage(__('Sorry, you cannot register with these details.')));
         }
     }
 
@@ -105,14 +116,14 @@ class EnterPasswordPage extends AbstractPage
         $botUser = BotUser::where('phone', $login)->where('is_active', 1)->first();
 
         if ($botUser && password_verify($password, $botUser->password)) {
-            $this->reply(new TextOutgoingMessage('Авторизація успішна.'));
+            $this->reply(new TextOutgoingMessage(__('Authorisation is successful.')));
             $this->session()->set('user_id', $botUser->id);
             return true;
         }
 
         BotUser::where('bot_user_id', $userId)->update(['is_active' => 0]);
-        $this->reply(new TextOutgoingMessage("Дані введено не вірно. Користувач деактивований.\n".
-            'Будь ласка, зверніться до ІТ відділу ГО "ВПУ" для активації.'));
+        $this->reply(new TextOutgoingMessage(__("Data entered incorrectly. User is deactivated") . "\n".
+            __('Please contact the IT department of the NPO \"VPU\" for activation.')));
         return false;
     }
 }
