@@ -12,8 +12,8 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
-        TextOutgoingMessage::make('Для початку натисніть відправити контакт', [
-            Button::contact('Відправити контакт', 'contact'),
+        TextOutgoingMessage::make(__('To get started, click Send contact'), [
+            Button::contact(__('Send a contact'), 'contact'),
             Button::text(__('Back'), 'back')
         ])->reply();
     }
@@ -27,7 +27,7 @@ class IndexPage extends AbstractPage
         if ($message->isContact() && !empty($message->getPhoneNumber())) {
             $phoneNumber = $message->getPhoneNumber();
             if ($this->validatePhoneNumber($phoneNumber)) {
-                TextOutgoingMessage::make('Дякуємо, ваш контакт отримано.')->reply();
+                TextOutgoingMessage::make(__('Thank you, your contact has been received.'))->reply();
                 $participant = $message->getContext()->getParticipant();
 
                 $botUser = BotUser::where('bot_user_id', $participant->getId())->first();
@@ -50,7 +50,7 @@ class IndexPage extends AbstractPage
                 return $this->next(MessagePage::class, ['phone' => $phoneNumber, 'bot_id' => $botUser->id])->withBreadcrumbs();
             }
         } else {
-            TextOutgoingMessage::make('Вибачте, для продовження потрібно відправити контакт.')->reply();
+            TextOutgoingMessage::make(__('Sorry, you need to send a contact to continue.'))->reply();
         }
 
         $this->show();

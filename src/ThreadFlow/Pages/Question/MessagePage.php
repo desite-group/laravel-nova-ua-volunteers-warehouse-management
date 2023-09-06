@@ -17,7 +17,7 @@ class MessagePage extends AbstractPage
     protected $bot_id;
     protected function show()
     {
-        TextOutgoingMessage::make("Напишіть будь ласка текст вашого запитання, пропозиції чи скарги.", [
+        TextOutgoingMessage::make(__("Please write the text of your question, suggestion or complaint."), [
             Button::text(__('Back'), 'back')
         ])->reply();
     }
@@ -35,7 +35,7 @@ class MessagePage extends AbstractPage
         ]);
         $botUser->questions()->save($question);
 
-        TextOutgoingMessage::make("Дякуємо, ваше повідомлення збережено. Ви отримаєте відповідь найближчим часом.")->reply();
+        TextOutgoingMessage::make(__("Thank you, your message has been saved. You will receive a reply shortly."))->reply();
         return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
     }
 }

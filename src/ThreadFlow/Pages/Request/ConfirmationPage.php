@@ -10,30 +10,30 @@ class ConfirmationPage extends AbstractPage
 {
     protected function show()
     {
-        TextOutgoingMessage::make("Дякуємо, ваше звернення отримано. Ми зв'яжемось з вами найближчим часом.")->reply();
+        TextOutgoingMessage::make(__("Thank you, your request has been received. We will get back to you shortly."))->reply();
 
         $messageArray = [
-            "Громадська Організація \"Волонтерська Підтримка України\" працює з перших днів війни, для забезпечення потреб: військових, лікарень та простих людей, які потребують допомоги.",
-            "Для отримання допомоги від нашої організації просимо виконати всі пункти УМОВ СПІВПРАЦІ.\n",
+            __("Non-profit Organization \"Volunteer Support of Ukraine\" has been working since the first days of the war to meet the needs of the military, hospitals and ordinary people in need of assistance."),
+            __("In order to receive the help from our organisation, please complete all the points of the TERMS OF COOPERATION") . "\n",
 
-            "1. ЗВЕРНЕННЯ",
-            "Для отримання допомоги першочергово потрібно надіслати нам фото запиту з підписом та печаткою (якщо використовується). Оригінал документу потрібно буде відправити нам через Нову Пошту чи Укрпошту.\n",
+            __("1. APPLICATION"),
+            __("To receive assistance, you first need to send us a photo of the request with your signature and stamp (if used). The original document will need to be sent to us via Nova Poshta or Ukrposhta") . "\n",
 
-            "2. ЗВОРОТНІЙ ЗВ’ЯЗОК",
-            "При отриманні допомоги, разом із вантажем, Вам надійде акт прийому-передачі. Його потрібно підписати, поставити печатку (якщо використовується) та надіслати підписаний документ нам через Нову Пошту чи Укрпошту. Можна однією відправкою разом з оригіналом звернення.\n",
+            __("2. COMMUNICATION"),
+            __("After receiving the aid, you will receive an acceptance certificate along with the cargo. It must be signed, stamped (if used) and sent to us via Nova Poshta or Ukrposhta. It can be sent in one shipment together with the original application") . "\n",
 
-            "3. ФОТОЗВІТ",
-            "Очікуємо фото використання або видачі ліків/медичних товарів, фото з лікарями/пацієнтами/військовими. При необхідності обличчя та місцевість можуть бути затертими. Фото лише коробок нам не підходять для звітності перед спонсорами.\n",
+            __("3. PHOTO RAPPORT"),
+            __("We expect photos of the use or delivery of medicines/medical supplies, photos with doctors/patients/military personnel. If necessary, faces and areas can be blurred. Photos of just boxes are not suitable for reporting to sponsors") . "\n",
 
-            "4. ВІДЕОЗВІТ",
-            "Відео може бути зняте в момент використання чи роздачі отриманої гуманітарної допомоги. Також можете зазначити наскільки корисним був отриманий вантаж. Такий звіт надзвичайно полюбляють наші іноземні друзі-волонтери."
+            __("4. VIDEO REPORT"),
+            __("The video can be shot at the moment of use or distribution of the received humanitarian aid. You can also note how useful the received cargo was. This kind of report is extremely popular with our foreign volunteer friends.")
         ];
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 
         $messageArray = [
-            "Чому ми вимушені ставити такі умови?",
-            "Це все необхідно для наших спонсорів, щоб вони бачили, що допомога дійсно надійшла до тих, хто її потребує. В такому випадку, меценати впевнені у нашій доброчесності та продовжують надсилати нам допомогу, а ми передаємо її Вам.",
-            "Отримуючи допомогу ви маєте розуміти скільки людей і праці стоїть за цим. Тому наперед вдячні за розуміння.  Разом до перемоги."
+            __("Why do we have to set such standards?"),
+            __("This is all necessary for our sponsors to see that the aid has actually reached those who need it. In this case, the sponsors are confident in our integrity and continue to send us help, and we pass it on to you."),
+            __("When you receive help, you should understand how many people and work are behind it. Therefore, we are grateful for your understanding in advance. Together to victory.")
         ];
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 
