@@ -48,7 +48,7 @@ class IndexPage extends AbstractPage
     private function getCurrentUsers()
     {
         $result = [];
-        foreach (BotUser::all() as $user){
+        foreach (BotUser::active()->volunteer()->get() as $user){
             $result[$user->id] = $user->fullName;
         }
 

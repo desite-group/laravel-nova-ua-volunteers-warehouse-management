@@ -2,6 +2,7 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Providers;
 
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Console\Commands\BotTaskReminder;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Category as NovaCategory;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Product as NovaProduct;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Counteragent as NovaCounteragent;
@@ -35,6 +36,10 @@ class WarehouseServiceProvider extends ServiceProvider
             __DIR__ . '/../../database/factories/' => database_path('factories/'),
         ], 'volunteers-warehouse-database');
 
+        $this->commands([
+            BotTaskReminder::class
+        ]);
+
         $this->scheduler();
         $this->nova();
     }
@@ -44,6 +49,7 @@ class WarehouseServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $schedule = app(Schedule::class);
 
+            $schedule->command('bot:task-reminder default')->everyMinute();
             $schedule->command('bot:task-reminder everyday')->dailyAt('10:30');
 
             $schedule->command('bot:task-reminder every_week')->weeklyOn(1, '10:30');

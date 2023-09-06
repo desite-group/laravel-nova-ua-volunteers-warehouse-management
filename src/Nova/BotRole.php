@@ -5,6 +5,7 @@ namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 use App\Nova\Resource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
@@ -67,7 +68,8 @@ class BotRole extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsToMany::make(__('Permissions'), 'permissions', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotPermission::class)
+            BelongsToMany::make(__('Permissions'), 'permissions', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotPermission::class),
+            HasMany::make(__('Users'), 'users', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser::class)
         ];
     }
 
