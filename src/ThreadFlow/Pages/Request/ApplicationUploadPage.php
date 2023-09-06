@@ -20,19 +20,19 @@ class ApplicationUploadPage extends AbstractPage
 
         if ($application->type === 'person') {
             $messageArray = [
-                "Зараз вам потрібно буде надіслати нам вісканований або сфотографований",
-                "Запит від {$type} з підписом\n",
-                "Також вам потрібно буде завантажити фото свого паспорта (сторінки 1,2,3, 11), або ID-картка",
-                "Для військовослужбовця також обовʼязковим є фото військового квитка або УБД",
-                "Дякуємо за розуміння."
+                __("Now you will need to send us a scanned or photographed"),
+                __('Request from') . ' ' . $type . ' ' . __('with signature') . "\n",
+                __("You will also need to upload a photo of your passport (pages 1, 2, 3, 11) or an ID card"),
+                __("A photo of a military ID card or certificate of a combatant"),
+                __("Thank you for your understanding.")
             ];
         } else {
             $messageArray = [
-                "Зараз вам потрібно буде надіслати нам вісканований або сфотографований",
-                "Запит від {$type} з підписом та печаткою\n",
-                "УВАГА! Документ вважається дійсним за наявності в ньому ПІДПИСУ і ПЕЧАТКИ.",
-                "Звернення без прикріпленого підписаного файлу розглядатись не будуть.",
-                "Дякуємо за розуміння."
+                __("Now you will need to send us a scanned or photographed"),
+                __('Request from') . ' ' . $type . ' ' . __('with signature and seal') . "\n",
+                __("ATTENTION! The document is considered valid if it contains a SIGNATURE and a SEAL."),
+                __("Applications without an attached signed file will not be considered."),
+                __("Thank you for your understanding.")
             ];
         }
 
@@ -40,7 +40,7 @@ class ApplicationUploadPage extends AbstractPage
             Button::text(__('Back'), 'back')
         ])->reply();
 
-        TextOutgoingMessage::make("Будь ласка, відправте файл звернення від {$type}", [
+        TextOutgoingMessage::make(__("Please send a request file from") . ' ' . $type, [
             Button::text(__('Back'), 'back')
         ])->reply();
     }

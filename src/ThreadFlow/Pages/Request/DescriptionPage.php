@@ -15,12 +15,12 @@ class DescriptionPage extends AbstractPage
     {
         if ($this->data['type'] === 'person') {
             $messageArray = [
-                "Опишіть детально кому потрібна ця допомога, додайте більше деталей, напишіть номер ВЧ\n",
-                "Також напишіть будь ласка, через кому, у чому є потреба та у якій кількості."
+                __("Describe in detail who needs this help, add more details, write the number of the military unit") . ".\n",
+                __("Please also indicate what you need and how much, separated by a comma.")
             ];
         } else {
             $messageArray = [
-                "Напишіть будь ласка, через кому, у чому є потреба та у якій кількості."
+                "Please write what you need and how much, separated by a comma."
             ];
         }
         TextOutgoingMessage::make(implode("\n", $messageArray), [
