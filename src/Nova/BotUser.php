@@ -4,9 +4,15 @@ namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
 use App\Nova\Resource;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Actions\BotUserSendMessage;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Actions\NewVersionSendMessage;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Filters\IsActiveFilter;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Filters\IsVolunteerFilter;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\Filters\RolesFilter;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
@@ -85,7 +91,10 @@ class BotUser extends Resource
             Boolean::make(__('Active'), 'is_active'),
             Boolean::make(__('Volunteer'), 'is_volunteer'),
             BelongsTo::make(__('Roles'), 'role', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole::class)
-                ->singularLabel(__('Roles')),
+                ->singularLabel(__('Role')),
+
+            HasMany::make(__('Bot Log Messages'), 'log_messages', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\LogBotMessage::class)
+                ->singularLabel(__('Bot Log Message')),
         ];
     }
 
@@ -108,7 +117,11 @@ class BotUser extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new RolesFilter(),
+            new IsActiveFilter(),
+            new IsVolunteerFilter()
+        ];
     }
 
     /**
@@ -131,7 +144,8 @@ class BotUser extends Resource
     public function actions(Request $request)
     {
         return [
-            new BotUserSendMessage()
+            new BotUserSendMessage(),
+            new NewVersionSendMessage()
         ];
     }
 }
