@@ -28,7 +28,8 @@ class LoginPage extends AbstractPage
             $phoneNumber = $message->getPhoneNumber();
             if ($this->validatePhoneNumber($phoneNumber)) {
                 $this->reply(new TextOutgoingMessage('Дякуємо, ваш контакт отримано.'));
-                return $this->next(EnterPasswordPage::class, ['login' => $phoneNumber])->withBreadcrumbs();
+                $participant = $message->getContext()->getParticipant();
+                return $this->next(EnterPasswordPage::class, ['login' => $phoneNumber, 'participant' => $participant])->withBreadcrumbs();
             } else {
                 $this->reply(new TextOutgoingMessage('Вибачте, ви не можете авторизуватись за даним номером телефону.'));
             }
