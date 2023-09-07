@@ -71,9 +71,17 @@ class Task extends Model
         'author_bot_user_id', 'bot_user_id', 'deadline', 'reminder', 'description', 'log', 'is_active', 'is_completed'
     ];
 
-    public static function getReminderTypes(): array
+    public static function getReminderTypes(?string $lang = null): array
     {
-        return self::remainderTypes;
+        if (!$lang) {
+            $lang = config('app.locale');
+        }
+
+        $types = [];
+        foreach (self::remainderTypes as $key => $type) {
+            $types[$key] = $type[$lang];
+        }
+        return $types;
     }
 
     public static function getReminderTypeByCode(?string $code, ?string $lang = null): string
