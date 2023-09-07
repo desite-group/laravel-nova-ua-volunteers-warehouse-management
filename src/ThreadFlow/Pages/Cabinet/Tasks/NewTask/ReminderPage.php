@@ -20,8 +20,9 @@ class ReminderPage extends AbstractPage
             ? $this->deadline->isoFormat('dddd Do MMMM YYYY HH:mm')
             : 'Не встановлено';
 
+        $lang = $this->session()->get('lang');
         $i = 0;
-        foreach (Task::getReminderTypes() as $key => $type) {
+        foreach (Task::getReminderTypes($lang) as $key => $type) {
             $index = (string) floor($i / 2);
             $buttons[$index][$key] = $type;
             $i++;

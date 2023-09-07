@@ -14,15 +14,14 @@ class EnterPasswordPage extends AbstractPage
 {
     private $botUser = null;
     protected $login;
+    protected $participant;
 
     protected function show()
     {
-        $participant = $message->getContext()->getParticipant();
-        
         $messageArray = [
             __("To continue, enter the password you specified during registration")
         ];
-        if (!$this->validateUserForAuth($participant->getId())) {
+        if (!$this->validateUserForAuth($this->participant->getId())) {
             $messageArray = [
                 __("The account does not exist yet. To continue registration, create and enter a password"),
                 __("Write down this password, it is required for authorisation and cannot be recovered.")
@@ -44,17 +43,15 @@ class EnterPasswordPage extends AbstractPage
             $login = $this->login;
 
             if ($this->validatePassword($password)) {
-                $participant = $message->getContext()->getParticipant();
-
-                if ($this->validateUserForAuth($participant->getId())) {
-                    if ($this->auth($participant->getId(), $login, $password)) {
+                if ($this->validateUserForAuth($this->participant->getId())) {
+                    if ($this->auth($this->participant->getId(), $login, $password)) {
                         return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
                     }
 
                     return $this->next(IndexPage::class);
                 }
 
-                if ($this->register($participant, $login, $password)) {
+                if ($this->register($this->participant, $login, $password)) {
                     return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
                 }
                 return $this->next(IndexPage::class);

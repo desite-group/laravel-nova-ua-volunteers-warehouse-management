@@ -28,7 +28,8 @@ class LoginPage extends AbstractPage
             $phoneNumber = $message->getPhoneNumber();
             if ($this->validatePhoneNumber($phoneNumber)) {
                 $this->reply(new TextOutgoingMessage(__('Thank you, your contact has been received.'));
-                return $this->next(EnterPasswordPage::class, ['login' => $phoneNumber])->withBreadcrumbs();
+                $participant = $message->getContext()->getParticipant();
+                return $this->next(EnterPasswordPage::class, ['login' => $phoneNumber, 'participant' => $participant])->withBreadcrumbs();
             } else {
                 $this->reply(new TextOutgoingMessage(__('We\'re sorry, you can\'t log in using this phone number.')));
             }

@@ -3,6 +3,7 @@
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models;
 
 use Database\Factories\ApplicationsFactory;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Jobs\BotSendNotification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -129,6 +130,18 @@ class Application extends Model implements Sortable, HasMedia
         $model->type = Arr::get($data, 'type');
 
         $model->save();
+
+        $messageArray = [
+            'Створено нове звернення',
+            'Тип: ' . self::getTypeByCode($model->type),
+            'Отримувач: ' . $model->organization,
+            'Контактна особа: ' . $model->recipient,
+            'Телефон: ' . $model->phone,
+            'Коментар' . "\n",
+            $model->additional_text
+        ];
+        BotSendNotification::dispatch(implode("\n", $messageArray), [], ['board', 'applications']);
+
         return $model;
     }
 }

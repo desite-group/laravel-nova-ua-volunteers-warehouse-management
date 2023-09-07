@@ -14,6 +14,11 @@ class BotRole extends Model
         'code'
     ];
 
+    public function users()
+    {
+        return $this->hasMany(BotUser::class, 'role_id');
+    }
+
     public function permissions()
     {
         return $this->belongsToMany(BotPermission::class);

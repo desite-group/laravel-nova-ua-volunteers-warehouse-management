@@ -34,6 +34,10 @@ class RecipientPersonPage extends AbstractPage
     protected function handleMessage(IncomingRegularMessageInterface $message)
     {
         if ($message->isText('back')) {
+            if ($this->data['type'] === 'person') {
+                return $this->next(IndexPage::class);
+            }
+
             return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
         }
 

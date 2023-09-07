@@ -54,6 +54,16 @@ class BotUser extends Model
         return $this->belongsToMany(Loading::class)->withPivot('is_confirmed');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeVolunteer($query)
+    {
+        return $query->where('is_volunteer', true);
+    }
+
     public function getFullNameAttribute(): string
     {
         return implode(' ', array_filter([

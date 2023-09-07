@@ -24,6 +24,18 @@ class BotTaskReminder extends Command
      */
     protected $description = 'Cron reminder user for active task';
 
+    protected const expiredMessageArray = [
+        "==============================",
+        "= 🚨 ПРОТЕРМІНОВАНЕ ЗАВДАННЯ! 🚨 =",
+        "==============================\n"
+    ];
+
+    protected const reminderMessageArray = [
+        "===========================",
+        "= 📌 Нагадування завдання! 📌 =",
+        "===========================\n"
+    ];
+
     /**
      * Create a new command instance.
      *
@@ -43,50 +55,79 @@ class BotTaskReminder extends Command
     {
         $reminderTypes = Task::getReminderTypes();
         $reminder = collect($this->argument('reminder'))->first();
+        if ($reminder === 'default') {
+            $this->defaultFlow();
+            return true;
+        }
+
         if (!isset($reminderTypes[$reminder])) {
             $this->error(
                 sprintf("ERROR! Reminder type %s not found!", $reminder));
             return false;
         }
 
+
         $tasks = Task::where('reminder', $reminder)->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
-            $lang = $this->session()->get('lang');
-
-            $status = Task::getStatusByCode($task->status, $lang);
-            $reminder = Task::getReminderTypeByCode($task->reminder, $lang);
-
-            if ($task->deadline < Carbon::now()) {
-                $messageArray = [
-                    "==============================",
-                    "= 🚨 ПРОТЕРМІНОВАНЕ ЗАВДАННЯ! 🚨 =",
-                    "==============================\n"
-                ];
-            } else {
-                $messageArray = [
-                    "===========================",
-                    "= 📌 Нагадування завдання! 📌 =",
-                    "===========================\n"
-                ];
-            }
-
-            $deadline = $task->deadline
-                ? $task->deadline->locale('uk')->isoFormat('dddd Do MMMM YYYY HH:mm')
-                : 'Не встановлено';
-            $messageArray = array_merge($messageArray, [
-                "Завдання №{$task->id}",
-                "Автор завдання: {$task->author_bot_user->fullName}",
-                "Поточний статус завдання: {$status}",
-                "Кінцевий термін виконання: {$deadline}",
-                "Нагадувати: {$reminder}",
-                "Опис завдання: \n{$task->description}\n",
-                "==========================",
-                "=== 💙 ДЯКУЮ ЗА УВАГУ 💛 ===",
-                "=========================="
-            ]);
-
-            BotSendMessage::dispatch(implode("\n", $messageArray), ReminderPage::class, $task->bot_user, ['task' => $task]);
-
+            $this->sendTaskMessage($task);
         }
+    }
+
+    private function defaultFlow()
+    {
+        $tasks = Task::where('deadline', Carbon::now()->addMinutes(-15))->active()->with('bot_user', 'author_bot_user')->get();
+        foreach ($tasks as $task) {
+            $this->sendTaskMessage($task, 'Залишилось ще 15 хвилин');
+        }
+
+        $tasks = Task::where('deadline', Carbon::now()->addHours(-2))->active()->with('bot_user', 'author_bot_user')->get();
+        foreach ($tasks as $task) {
+            $this->sendTaskMessage($task, 'Залишилось ще 2 години');
+        }
+
+        $tasks = Task::where('deadline', Carbon::now())->active()->with('bot_user', 'author_bot_user')->get();
+        foreach ($tasks as $task) {
+            $this->sendTaskMessage($task, 'Прийшов час виконати завдання');
+        }
+
+        $tasks = Task::where('deadline', Carbon::now()->addMinutes(15))->active()->with('bot_user', 'author_bot_user')->get();
+        foreach ($tasks as $task) {
+            $this->sendTaskMessage($task, 'Завдання протерміновано на 15 хвилин');
+        }
+
+        $tasks = Task::where('deadline', Carbon::now()->addHours(2))->active()->with('bot_user', 'author_bot_user')->get();
+        foreach ($tasks as $task) {
+            $this->sendTaskMessage($task, 'Завдання протерміновано на 2 години');
+        }
+    }
+
+    private function sendTaskMessage($task, ?string $additionalLine = null)
+    {
+        $status = Task::getStatusByCode($task->status);
+        $reminder = Task::getReminderTypeByCode($task->reminder);
+
+        $messageArray = ($task->deadline < Carbon::now()) ? self::expiredMessageArray : self::reminderMessageArray;
+
+        $deadline = $task->deadline
+            ? $task->deadline->locale('uk')->isoFormat('dddd Do MMMM YYYY HH:mm')
+            : 'Не встановлено';
+
+        if ($additionalLine) {
+            $messageArray[] = "\n" . $additionalLine . "\n";
+        }
+
+        $messageArray = array_merge($messageArray, [
+            "Завдання №{$task->id}",
+            "Автор завдання: {$task->author_bot_user->fullName}",
+            "Поточний статус завдання: {$status}",
+            "Кінцевий термін виконання: {$deadline}",
+            "Нагадувати: {$reminder}",
+            "Опис завдання: \n{$task->description}\n",
+            "==========================",
+            "=== 💙 ДЯКУЮ ЗА УВАГУ 💛 ===",
+            "=========================="
+        ]);
+
+        BotSendMessage::dispatch(implode("\n", $messageArray), ReminderPage::class, $task->bot_user, ['task' => $task]);
     }
 }
