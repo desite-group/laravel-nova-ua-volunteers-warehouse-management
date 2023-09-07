@@ -103,10 +103,8 @@ class BotTaskReminder extends Command
 
     private function sendTaskMessage($task, ?string $additionalLine = null)
     {
-        $lang = $this->session()->get('lang');
-
-        $status = Task::getStatusByCode($task->status, $lang);
-        $reminder = Task::getReminderTypeByCode($task->reminder, $lang);
+        $status = Task::getStatusByCode($task->status);
+        $reminder = Task::getReminderTypeByCode($task->reminder);
 
         $messageArray = ($task->deadline < Carbon::now()) ? self::expiredMessageArray : self::reminderMessageArray;
 
