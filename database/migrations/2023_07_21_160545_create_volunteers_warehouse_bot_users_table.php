@@ -29,6 +29,7 @@ class CreateVolunteersWarehouseBotUsersTable extends Migration
             $table->unsignedInteger('is_active')->default(0);
             $table->unsignedInteger('is_volunteer')->default(0);
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

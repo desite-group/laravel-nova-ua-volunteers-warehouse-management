@@ -75,27 +75,27 @@ class BotTaskReminder extends Command
 
     private function defaultFlow()
     {
-        $tasks = Task::where('deadline', Carbon::now()->addMinutes(-15))->active()->with('bot_user', 'author_bot_user')->get();
+        $tasks = Task::whereNotNull('deadline')->where('deadline', Carbon::now()->addMinutes(-15))->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
             $this->sendTaskMessage($task, 'Залишилось ще 15 хвилин');
         }
 
-        $tasks = Task::where('deadline', Carbon::now()->addHours(-2))->active()->with('bot_user', 'author_bot_user')->get();
+        $tasks = Task::whereNotNull('deadline')->where('deadline', Carbon::now()->addHours(-2))->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
             $this->sendTaskMessage($task, 'Залишилось ще 2 години');
         }
 
-        $tasks = Task::where('deadline', Carbon::now())->active()->with('bot_user', 'author_bot_user')->get();
+        $tasks = Task::whereNotNull('deadline')->where('deadline', Carbon::now())->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
             $this->sendTaskMessage($task, 'Прийшов час виконати завдання');
         }
 
-        $tasks = Task::where('deadline', Carbon::now()->addMinutes(15))->active()->with('bot_user', 'author_bot_user')->get();
+        $tasks = Task::whereNotNull('deadline')->where('deadline', Carbon::now()->addMinutes(15))->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
             $this->sendTaskMessage($task, 'Завдання протерміновано на 15 хвилин');
         }
 
-        $tasks = Task::where('deadline', Carbon::now()->addHours(2))->active()->with('bot_user', 'author_bot_user')->get();
+        $tasks = Task::whereNotNull('deadline')->where('deadline', Carbon::now()->addHours(2))->active()->with('bot_user', 'author_bot_user')->get();
         foreach ($tasks as $task) {
             $this->sendTaskMessage($task, 'Завдання протерміновано на 2 години');
         }
