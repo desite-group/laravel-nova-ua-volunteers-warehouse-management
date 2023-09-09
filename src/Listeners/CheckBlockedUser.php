@@ -40,6 +40,12 @@ class CheckBlockedUser
      */
     public function handle(string $channelName, $event)
     {
-//        return $event->getPage()->goNext(BlockedPage::class);
+        $participant = $event->getMessage()->getContext()->getParticipant();
+        $botUser = BotUser::where('bot_user_id', $participant->getId())->withTrashed()->first();
+
+        if ($participant->getLanguage() === 'ru' || !is_null($botUser->deleted_at)) {
+            $pageState = $event->getPageState();
+            $pageState->setPageClass(BlockedPage::class);
+        }
     }
 }

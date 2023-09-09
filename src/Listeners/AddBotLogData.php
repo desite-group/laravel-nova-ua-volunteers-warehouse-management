@@ -53,7 +53,7 @@ class AddBotLogData
             $data = [];
         }
 
-        $botUser = BotUser::firstOrCreate(['bot_user_id' => $participant->getId()], $data);
+        $botUser = BotUser::withTrashed()->firstOrCreate(['bot_user_id' => $participant->getId()], $data);
 
         LogBotMessage::create([
             'bot_user_id' => $botUser->id,

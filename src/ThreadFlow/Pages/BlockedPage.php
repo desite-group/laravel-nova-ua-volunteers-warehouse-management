@@ -25,7 +25,9 @@ class BlockedPage extends AbstractPage
             "Разом до перемоги!💙💛",
         ];
 
-        TextOutgoingMessage::make( implode("\n", $messageArray))->reply();
+        TextOutgoingMessage::make(implode("\n", $messageArray), [
+            Button::text('Героям Слава!🇺🇦', 'ukraine')
+        ])->reply();
     }
 
     protected function handleMessage(IncomingRegularMessageInterface $message)
