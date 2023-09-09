@@ -69,31 +69,31 @@ class AddBotLogData
         }
 
         if ($message instanceof AudioIncomingRegularMessage) {
-            return 'Отримано аудіо';
+            return __('Received audio');
         }
 
         if ($message instanceof ContactIncomingRegularMessage) {
-            return 'Отримано контакт';
+            return __('Contact received');
         }
 
         if ($message instanceof ImageIncomingRegularMessage) {
-            return 'Отримано зображення';
+            return __('Image received');
         }
 
         if ($message instanceof FileIncomingRegularMessage) {
-            return 'Отримано файл';
+            return __('File received');
         }
 
         if ($message instanceof LocationIncomingRegularMessage) {
-            return 'Отримано локацію';
+            return __('Location received');
         }
 
         if ($message instanceof StickerIncomingRegularMessage) {
-            return 'Отримано стікер';
+            return __('Received a sticker');
         }
 
         if ($message instanceof VideoIncomingRegularMessage) {
-            return 'Отримано відео';
+            return __('Video received');
         }
 
 
@@ -102,17 +102,17 @@ class AddBotLogData
         }
 
         if ($message instanceof ForwardOutgoingMessage) {
-            return 'Переслано повідомлення';
+            return __('Message sent');
         }
 
         if ($message instanceof ImageOutgoingMessage) {
-            return 'Відправлено зображення';
+            return __('Image sent');
         }
 
         if ($message instanceof FileOutgoingMessage) {
-            return 'Відправлено файл';
+            return __('File sent');
         }
 
-        return 'Тип повідомлення не визначено';
+        return __('Message type is not defined');
     }
 }
