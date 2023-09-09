@@ -44,6 +44,9 @@ class CheckBlockedUser
         $botUser = BotUser::where('bot_user_id', $participant->getId())->withTrashed()->first();
 
         if ($participant->getLanguage() === 'ru' || !is_null($botUser->deleted_at)) {
+            if (!is_null($botUser->deleted_at)) {
+                $botUser->delete();
+            }
             $pageState = $event->getPageState();
             $pageState->setPageClass(BlockedPage::class);
         }
