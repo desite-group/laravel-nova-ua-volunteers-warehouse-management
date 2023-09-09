@@ -10,10 +10,13 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage('Виберіть дію з документами', [
-            ['outgoing' => 'Новий акт на видачу', 'incoming' => 'Новий акт на отримання'],
-            ['search' => 'Пошук документа'],
-            ['back' => __('Back')]
+        $this->reply(new TextOutgoingMessage(__('Choose an action with documents'), [
+            [
+                Button::contact(__('New certificate of issue'), 'outgoing'),
+                Button::contact(__('New certificate of receipt'), 'incoming')
+            ],
+            Button::contact(__('Search a document'), 'search'),
+            Button::contact(__('Back'), 'back')
         ]));
     }
 

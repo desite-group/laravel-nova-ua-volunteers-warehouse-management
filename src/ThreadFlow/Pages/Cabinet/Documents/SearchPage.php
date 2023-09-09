@@ -10,9 +10,9 @@ class SearchPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage('Пошук документа по системі. Виберіть критерій пошуку', [
-            ['number' => 'По номеру документа', 'date' => 'По даті'],
-            ['phone' => 'По телефону отримувача', 'name' => 'По імені отримувача'],
+        $this->reply(new TextOutgoingMessage(__('Search for a document in the system. Select a search criterion'), [
+            ['number' => __('By document number'), 'date' => __('By date')],
+            ['phone' => __('By the recipient\'s phone'), 'name' => __('By the recipient\'s name')],
             ['back' => __('Back')]
         ]));
     }

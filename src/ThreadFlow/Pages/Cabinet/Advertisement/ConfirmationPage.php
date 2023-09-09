@@ -15,12 +15,12 @@ class ConfirmationPage extends AbstractPage
     protected function show()
     {
         TextOutgoingMessage::make(
-            "Ваше повідомлення буде відправлено усім волонтерам авторизованим в даному боті.\n".
-            "Будь ласка перевірте написаний текст та підтвердіть відправку.\n\n".
-            "Зверніть увагу! Дана дія невідворотна!\n".
-            'Текст який буде надіслано: ')->reply();
+            __("Your message will be sent to all volunteers logged in to this bot") . "\n".
+            __("Please check the written text and confirm sending") . "\n\n".
+            __("Please note! This action is inevitable!") . "\n".
+            __('The text that will be sent: ') )->reply();
         TextOutgoingMessage::make($this->text, [
-            Button::text('Все вірно, надіслати', 'send'),
+            Button::text(__('That\'s right, send'), 'send'),
             Button::text(__('Back'), 'back')
         ])->reply();
     }
@@ -32,7 +32,7 @@ class ConfirmationPage extends AbstractPage
         }
         if ($message->isText('send')) {
             BotSendMessageForAll::dispatch($this->text, AdvertisementPage::class, $this->session()->get('user_id'));
-            $this->reply(new TextOutgoingMessage('Дякуємо, ваше повідомлення успішно надіслано.'));
+            TextOutgoingMessage::make(__('Thank you, your message has been sent successfully.'))->reply();
             return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
         }
 

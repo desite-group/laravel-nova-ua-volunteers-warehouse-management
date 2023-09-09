@@ -10,8 +10,8 @@ class IncomingPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage('Створення нового акту на отримання', [
-            ['back' => __('Back')]
+        $this->reply(new TextOutgoingMessage(__('Creating a new certificate of receipt'), [
+            Button::contact(__('Back'), 'back')
         ]));
     }
 

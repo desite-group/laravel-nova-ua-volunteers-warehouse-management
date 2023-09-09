@@ -13,9 +13,9 @@ class CommentPage extends AbstractPage
     protected function show()
     {
         $datetime = $this->datetime->isoFormat('dddd Do MMMM YYYY HH:mm');
-        $this->reply(new TextOutgoingMessage("Дата та час: {$datetime}\n".
-            "Локація: {$this->location}\n\n".
-            "Напишіть короткий опис даної події", [
+        $this->reply(new TextOutgoingMessage(__("Date and time:") . " " .  $datetime . "\n" .
+            __("Location:") . " " .  $this->location . "\n\n" .
+            __("Write a short description of the event") , [
             ['back' => __('Back')]
         ]));
     }

@@ -10,7 +10,7 @@ class OutgoingPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage('Створення нового акту на видачу', [
+        $this->reply(new TextOutgoingMessage(__('Creating a new certificate of issue'), [
             ['back' => __('Back')]
         ]));
     }

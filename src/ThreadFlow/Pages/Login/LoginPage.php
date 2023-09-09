@@ -13,8 +13,8 @@ class LoginPage extends AbstractPage
     protected function show()
     {
         $this->reply(new TextOutgoingMessage(__('To authorise, click the send contact button'), [
-            ['contact' => Button::contact(__('Send a contact'))],
-            ['back' => __('Back')]
+            Button::contact(__('Send a contact'), 'contact'),
+            Button::contact(__('Back'), 'back')
         ]));
     }
 
@@ -27,14 +27,14 @@ class LoginPage extends AbstractPage
         if ($message->isContact() && !empty($message->getPhoneNumber())) {
             $phoneNumber = $message->getPhoneNumber();
             if ($this->validatePhoneNumber($phoneNumber)) {
-                $this->reply(new TextOutgoingMessage('Дякуємо, ваш контакт отримано.'));
+                $this->reply(new TextOutgoingMessage(__('Thank you, your contact has been received.'));
                 $participant = $message->getContext()->getParticipant();
                 return $this->next(EnterPasswordPage::class, ['login' => $phoneNumber, 'participant' => $participant])->withBreadcrumbs();
             } else {
-                $this->reply(new TextOutgoingMessage('Вибачте, ви не можете авторизуватись за даним номером телефону.'));
+                $this->reply(new TextOutgoingMessage(__('We\'re sorry, you can\'t log in using this phone number.')));
             }
         } else {
-            $this->reply(new TextOutgoingMessage('Вибачте, для авторизації потрібно відправити контакт.'));
+            $this->reply(new TextOutgoingMessage(__('Sorry, you need to send a contact for authorisation.')));
         }
 
         $this->show();
