@@ -42,11 +42,13 @@ class CheckBlockedUser
     {
         $participant = $event->getMessage()->getContext()->getParticipant();
         $botUser = BotUser::where('bot_user_id', $participant->getId())->withTrashed()->first();
+        if ($participant->getLanguage() === 'ru') {
+            $botUser->delete();
+            $botUser->is_active = false;
+            $botUser->save();
+        }
 
-        if ($participant->getLanguage() === 'ru' || !is_null($botUser->deleted_at)) {
-            if (!is_null($botUser->deleted_at)) {
-                $botUser->delete();
-            }
+        if (!is_null($botUser->deleted_at)) {
             $pageState = $event->getPageState();
             $pageState->setPageClass(BlockedPage::class);
         }

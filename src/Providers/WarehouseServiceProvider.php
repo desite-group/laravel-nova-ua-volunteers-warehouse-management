@@ -50,6 +50,7 @@ class WarehouseServiceProvider extends ServiceProvider
             $schedule = app(Schedule::class);
 
             $schedule->command('bot:task-reminder default')->everyMinute();
+
             $schedule->command('bot:task-reminder everyday')->dailyAt('10:30');
 
             $schedule->command('bot:task-reminder every_week')->weeklyOn(1, '10:30');

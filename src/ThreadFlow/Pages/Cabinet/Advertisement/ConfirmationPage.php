@@ -15,10 +15,10 @@ class ConfirmationPage extends AbstractPage
     protected function show()
     {
         TextOutgoingMessage::make(
-            __("Your message will be sent to all volunteers logged in to this bot") . "\n".
+            __("Your message will be sent to all volunteers logged in to this bot.") . "\n".
             __("Please check the written text and confirm sending") . "\n\n".
             __("Please note! This action is inevitable!") . "\n".
-            __('The text that will be sent: ') )->reply();
+            __('The text that will be sent:') )->reply();
         TextOutgoingMessage::make($this->text, [
             Button::text(__('That\'s right, send'), 'send'),
             Button::text(__('Back'), 'back')

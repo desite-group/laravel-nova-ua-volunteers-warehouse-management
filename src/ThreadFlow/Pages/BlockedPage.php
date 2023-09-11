@@ -2,6 +2,7 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages;
 
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotUser;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Login\LoginPage;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
 use SequentSoft\ThreadFlow\Keyboard\Button;
@@ -32,6 +33,15 @@ class BlockedPage extends AbstractPage
 
     protected function handleMessage(IncomingRegularMessageInterface $message)
     {
+        if ($message->isText('ukraine')) {
+            $participant = $message->getContext()->getParticipant();
+            $botUser = BotUser::where('bot_user_id', $participant->getId())->first();
+
+            if ($botUser && is_null($botUser->deleted_at)) {
+                return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class)->withBreadcrumbs();
+            }
+        }
+
         $this->show();
     }
 }

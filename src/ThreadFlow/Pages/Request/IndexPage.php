@@ -14,7 +14,7 @@ class IndexPage extends AbstractPage
         TextOutgoingMessage::make(__('Choose the type that corresponds to your request'), [
            Button::text(__('Request from the Military Unit'), 'military'),
            Button::text(__('Request from the Organization'), 'organization'),
-           Button::text(__('Request from a individual (including military personnel'), 'person'),
+           Button::text(__('Request from a individual (including military personnel)'), 'person'),
            Button::text(__('Back'), 'back')
         ])->reply();
     }
