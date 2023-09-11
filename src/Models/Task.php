@@ -89,8 +89,12 @@ class Task extends Model
         if (!$lang) {
             $lang = config('app.locale');
         }
+        if (!self::remainderTypes[$code][$lang]) {
+            return $lang === 'uk' ? 'Не встановлено' : 'Not selected';
+        }
 
-        return self::remainderTypes[$code][$lang] ?? $lang === 'uk' ? 'Не встановлено' : 'Not selected';
+
+        return self::remainderTypes[$code][$lang];
     }
 
     public static function getStatusByCode(?string $code, ?string $lang = null): ?string
