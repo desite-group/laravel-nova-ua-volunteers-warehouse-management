@@ -13,8 +13,8 @@
         }
     ],
     "require": {
-        "ebess/advanced-nova-media-library": "^9",
-        "numaxlab/nova-ckeditor5-classic": "^1.1",
+        "ebess/advanced-nova-media-library": "^4.1",
+        "mostafaznv/nova-ckeditor": "^1.1",
         "outl1ne/nova-sortable": "*",
         "spatie/laravel-medialibrary": "^9",
         "digital-creative/conditional-container": "*",
