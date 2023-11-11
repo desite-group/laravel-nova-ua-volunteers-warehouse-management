@@ -21,6 +21,7 @@ class ApplicationSamplesPage extends AbstractPage
                 __("At the last step, you will need to upload a signed document") . ".\n",
                 __("Download, print or handwrite and sign the form") . ".\n",
                 __("ATTENTION! Applications without the attached signed file will not be considered."),
+                __("ATTENTION! By submitting your data, you agree that we will store and process all personal data provided by you."),
                 __("Thanks for your understanding.")
             ];
         } else {
@@ -29,6 +30,7 @@ class ApplicationSamplesPage extends AbstractPage
                 __("At the last step, you will need to upload a signed document") . ".\n",
                 __("Download, fill out this template, print, sign and stamp") . "\n",
                 __("ATTENTION! The document is considered valid if it contains a SIGNATURE and a SEAL."),
+                __("ATTENTION! By submitting your data, you agree that we will store and process all personal data provided by you."),
                 __("Applications without an attached signed file will not be considered."),
                 __("Thanks for your understanding.")
             ];

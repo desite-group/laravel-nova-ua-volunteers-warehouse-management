@@ -46,7 +46,7 @@ class MessagePage extends AbstractPage
         ];
         BotSendNotification::dispatch(implode("\n", $messageArray), [], ['board']);
 
-        TextOutgoingMessage::make(__("Thank you, your message has been saved. You will receive a reply shortly."))->reply();
+        TextOutgoingMessage::make(__("Thank you, your message has been saved. You will receive a reply shortly"))->reply();
         return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
     }
 }

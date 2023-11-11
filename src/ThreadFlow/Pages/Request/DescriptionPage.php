@@ -20,7 +20,7 @@ class DescriptionPage extends AbstractPage
             ];
         } else {
             $messageArray = [
-                "Please write what you need and how much, separated by a comma."
+                __("Please write what you need and how much, separated by a comma.")
             ];
         }
         TextOutgoingMessage::make(implode("\n", $messageArray), [

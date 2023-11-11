@@ -23,7 +23,7 @@ class ConfirmationPage extends AbstractPage
             __("After receiving the aid, you will receive an acceptance certificate along with the cargo. It must be signed, stamped (if used) and sent to us via Nova Poshta or Ukrposhta. It can be sent in one shipment together with the original application.") . "\n",
 
             __("3. PHOTO RAPPORT"),
-            __("We expect photos of the use or delivery of medicines/medical supplies, photos with doctors/patients/military personnel. If necessary, faces and areas can be blurred. Photos of just boxes are not suitable for reporting to sponsors.") . "\n",
+            __("We expect photos of the use or delivery of aid, photo with aid recipients (military or civilian). If necessary, faces and areas can be blurred. Photos of just boxes are not suitable for reporting to sponsors.") . "\n",
 
             __("4. VIDEO REPORT"),
             __("The video can be shot at the moment of use or distribution of the received humanitarian aid. You can also note how useful the received cargo was. This kind of report is extremely popular with our foreign volunteer friends.")
@@ -33,7 +33,7 @@ class ConfirmationPage extends AbstractPage
         $messageArray = [
             __("Why do we have to set such standards?"),
             __("This is all necessary for our sponsors to see that the aid has actually reached those who need it. In this case, the sponsors are confident in our integrity and continue to send us help, and we pass it on to you."),
-            __("When you receive help, you should understand how many people and work are behind it. Therefore, we are grateful for your understanding in advance. Together to victory.")
+            __("When you receive help, you should understand how many people and work are behind it. Therefore, we are grateful for your understanding in advance. Together to victory!")
         ];
         TextOutgoingMessage::make(implode("\n", $messageArray))->reply();
 

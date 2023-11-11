@@ -11,6 +11,7 @@ use SequentSoft\ThreadFlow\Page\AbstractPage;
 class ApplicationUploadPage extends AbstractPage
 {
     protected $application_id;
+    private $isFileReceived = false;
     protected function show()
     {
         $lang = $this->session()->get('lang');
@@ -22,7 +23,8 @@ class ApplicationUploadPage extends AbstractPage
             $messageArray = [
                 __("Now you will need to send us a scanned or photographed"),
                 __('Request from') . ' ' . $type . ' ' . __('with signature') . "\n",
-                __("You will also need to upload a photo of your passport (pages 1, 2, 3, 11) or an ID card"),
+                __("You will also need to upload a photo of the RNOCPP (individual tax number)"),
+                __("You will also need to upload a photo of your passport (pages 1, 2, 3, 11) or an ID card with an application where your residence is indicated"),
                 __("A photo of a military ID card or certificate of a combatant"),
                 __("Thank you for your understanding.")
             ];
@@ -61,9 +63,14 @@ class ApplicationUploadPage extends AbstractPage
             $url = $message->getUrl();
             $filename = basename($url);
             $application->addMediaFromUrl($url)->usingName($filename)->toMediaCollection('documents');
-            TextOutgoingMessage::make(__("Thank you, your file has been received. You can send more, or click the") . ' "' . __('Complete') . '".', [
-                Button::text(__('Complete'), 'finish')
-            ])->reply();
+
+            if (!$this->isFileReceived) {
+                TextOutgoingMessage::make(__("Thank you, your file has been received. You can send more, or click the") . ' "' . __('Complete') . '".', [
+                    Button::text(__('Complete'), 'finish')
+                ])->reply();
+
+                $this->isFileReceived = true;
+            }
 
             return;
         }
