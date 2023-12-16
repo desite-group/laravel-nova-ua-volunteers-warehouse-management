@@ -55,7 +55,7 @@ class ConfirmationPage extends AbstractPage
 
                 $botUsers = BotUser::all();
                 foreach ($botUsers as $botUser) {
-                    BotSendMessage::dispatch(implode("\n", $messageArray), NotificationPage::class, $botUser->bot_user_id, ['loading' => $loading]);
+                    BotSendMessage::dispatch(implode("\n", $messageArray), NotificationPage::class, $botUser, ['loading' => $loading]);
                 }
                 $this->reply(new TextOutgoingMessage('Дякуємо, ваше повідомлення успішно надіслано.'));
                 return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);

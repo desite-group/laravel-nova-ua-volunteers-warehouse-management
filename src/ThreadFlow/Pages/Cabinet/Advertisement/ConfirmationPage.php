@@ -38,7 +38,7 @@ class ConfirmationPage extends AbstractPage
                     continue;
                 }
 
-                BotSendMessage::dispatch($this->text, AdvertisementPage::class, $botUser->bot_user_id);
+                BotSendMessage::dispatch($this->text, AdvertisementPage::class, $botUser);
             }
 
             TextOutgoingMessage::make(__('Thank you, your message has been sent successfully.'))->reply();
