@@ -2,7 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\Loading;
 
-use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Jobs\BotSendMessageForAll;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Jobs\BotSendMessage;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotUser;
 use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Loading;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
 use SequentSoft\ThreadFlow\Messages\Outgoing\Regular\TextOutgoingMessage;
@@ -51,8 +52,11 @@ class ConfirmationPage extends AbstractPage
                     "Локація: {$this->location}\n",
                     $this->text
                 ];
-                //            BotSendMessageForAll::dispatch(implode("\n", $messageArray), NotificationPage::class, $this->session()->get('user_id'), ['loading' => $loading]);
-                BotSendMessageForAll::dispatch(implode("\n", $messageArray), NotificationPage::class, null, ['loading' => $loading]);
+
+                $botUsers = BotUser::all();
+                foreach ($botUsers as $botUser) {
+                    BotSendMessage::dispatch(implode("\n", $messageArray), NotificationPage::class, $botUser->bot_user_id, ['loading' => $loading]);
+                }
                 $this->reply(new TextOutgoingMessage('Дякуємо, ваше повідомлення успішно надіслано.'));
                 return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
             }

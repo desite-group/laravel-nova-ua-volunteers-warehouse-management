@@ -2,7 +2,8 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\Advertisement;
 
-use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Jobs\BotSendMessageForAll;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Jobs\BotSendMessage;
+use DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\BotUser;
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
 use SequentSoft\ThreadFlow\Keyboard\Button;
 use SequentSoft\ThreadFlow\Messages\Outgoing\Regular\TextOutgoingMessage;
@@ -31,7 +32,15 @@ class ConfirmationPage extends AbstractPage
             return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
         }
         if ($message->isText('send')) {
-            BotSendMessageForAll::dispatch($this->text, AdvertisementPage::class, $this->session()->get('user_id'));
+            $botUsers = BotUser::all();
+            foreach ($botUsers as $botUser) {
+                if ($botUser->id === $this->session()->get('user_id')) {
+                    continue;
+                }
+
+                BotSendMessage::dispatch($this->text, AdvertisementPage::class, $botUser->bot_user_id);
+            }
+
             TextOutgoingMessage::make(__('Thank you, your message has been sent successfully.'))->reply();
             return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
         }
