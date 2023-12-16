@@ -25,15 +25,11 @@ class BotTaskReminder extends Command
     protected $description = 'Cron reminder user for active task';
 
     protected const expiredMessageArray = [
-        "==============================",
-        "= 🚨 ПРОТЕРМІНОВАНЕ ЗАВДАННЯ! 🚨 =",
-        "==============================\n"
+        "🚨 ПРОТЕРМІНОВАНЕ ЗАВДАННЯ! 🚨"."\n",
     ];
 
     protected const reminderMessageArray = [
-        "===========================",
-        "= 📌 Нагадування завдання! 📌 =",
-        "===========================\n"
+        "📌 Нагадування завдання! 📌"."\n",
     ];
 
     /**
@@ -123,9 +119,7 @@ class BotTaskReminder extends Command
             "Кінцевий термін виконання: {$deadline}",
             "Нагадувати: {$reminder}",
             "Опис завдання: \n{$task->description}\n",
-            "==========================",
-            "=== 💙 ДЯКУЮ ЗА УВАГУ 💛 ===",
-            "=========================="
+            "\n"."💙 ДЯКУЮ ЗА УВАГУ 💛",
         ]);
 
         BotSendMessage::dispatch(implode("\n", $messageArray), ReminderPage::class, $task->bot_user, ['task' => $task]);

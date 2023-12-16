@@ -14,13 +14,9 @@ class AdvertisementPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage(
             implode("\n", [
-                "=============================",
-                "= 🚨 ВАЖЛИВЕ ОГОЛОШЕННЯ! 🚨 =",
-                "=============================\n",
+                "🚨 ВАЖЛИВЕ ОГОЛОШЕННЯ! 🚨"."\n",
                 $this->message,
-                "=============================",
-                "=== 💙 ДЯКУЮ ЗА УВАГУ 💛 ===",
-                "============================="
+                "\n"."💙 ДЯКУЮ ЗА УВАГУ 💛",
             ]), [
                 Button::text('Зрозіміло', 'back')
             ]));

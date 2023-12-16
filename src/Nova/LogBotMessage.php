@@ -91,10 +91,11 @@ class LogBotMessage extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Textarea::make(__('Message'),  'message'),
             Text::make(__('Page Class'),  'page_class'),
-            Text::make(__('Message'),  'message')->onlyOnIndex(),
 
             BelongsTo::make(__('Bot User'), 'bot_user', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser::class)
                 ->singularLabel(__('Bot User')),
+
+            Text::make(__('Message'),  'message'),
         ];
     }
 
