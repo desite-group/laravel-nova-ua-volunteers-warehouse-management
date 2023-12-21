@@ -22,16 +22,16 @@ class Application extends Model implements Sortable, HasMedia
 
     const types = [
         'military'      => [
-            'uk' => 'Військової Частини',
-            'en' => 'Military Unit'
+            'uk' => 'військової частини',
+            'en' => 'military unit'
         ],
         'organization'  => [
-            'uk' => 'Організації',
-            'en' => 'Organizations'
+            'uk' => 'організації',
+            'en' => 'organizations'
         ],
         'person'        => [
-            'uk' => 'Фізичної особи (у т.ч. військовослужбовця)',
-            'en' => 'Person (including military personnel)'
+            'uk' => 'фізичної особи (у т.ч. військовослужбовця)',
+            'en' => 'person (including military personnel)'
         ]
     ];
 

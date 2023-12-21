@@ -58,9 +58,10 @@ class ConfirmationPage extends AbstractPage
                         ? $this->deadline->isoFormat('dddd Do MMMM YYYY HH:mm')
                         : 'Не встановлено';
                     $reminder = Task::getReminderTypeByCode($this->reminder, $this->session()->get('lang'));
+                    $author = BotUser::where('id', $this->session()->get('user_id'))->first();
                     $messageArray = [
                         "Для вас створено нове завдання\n",
-                        "Автор завдання: {$user['name']}",
+                        "Автор завдання: {$author->name}",
                         "Кінцевий термін виконання: {$deadline}",
                         "Нагадувати: {$reminder}",
                         "Опис завдання: \n{$this->text}"
