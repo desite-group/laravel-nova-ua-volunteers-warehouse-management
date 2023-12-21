@@ -20,7 +20,7 @@
         "digital-creative/conditional-container": "*",
         "digital-creative/nova-json-wrapper": "*",
         "sequentsoft/threadflow": "^0.3.0",
-        "sequentsoft/threadflow-telegram": "^0.0.14"
+        "sequentsoft/threadflow-telegram": "^0.0.15"
     },
     "extra": {
         "laravel": {
