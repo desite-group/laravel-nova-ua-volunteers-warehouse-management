@@ -34,7 +34,7 @@ class EdrpouPage extends AbstractPage
     protected function handleMessage(IncomingRegularMessageInterface $message)
     {
         if ($message->isText('back')) {
-            return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Request\IndexPage::class);
         }
 
         $this->data['registration_data'] = $message->isText('unset') ? null : $message->getText();

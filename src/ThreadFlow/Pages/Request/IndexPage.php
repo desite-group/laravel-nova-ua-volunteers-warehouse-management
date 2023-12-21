@@ -26,7 +26,7 @@ class IndexPage extends AbstractPage
         }
 
         if ($message->isText('military') || $message->isText('organization') || $message->isText('person')) {
-            return $this->next(ApplicationSamplesPage::class, ['data' => ['type' => $message->getText()]])->withBreadcrumbs();
+            return $this->next(ApplicationSamplesPage::class, ['data' => ['type' => $message->getText()]]);
         }
 
         TextOutgoingMessage::make(__('The type is not correct. Try using the keyboard.'))->reply();

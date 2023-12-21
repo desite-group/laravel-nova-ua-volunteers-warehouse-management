@@ -13,7 +13,7 @@ class RecipientPage extends AbstractPage
     protected function show()
     {
         if ($this->data['type'] === 'person') {
-            return $this->next(RecipientPersonPage::class, ['data' => $this->data])->withBreadcrumbs();
+            return $this->next(RecipientPersonPage::class, ['data' => $this->data]);
         }
 
         $message = '';
@@ -38,11 +38,11 @@ class RecipientPage extends AbstractPage
                 return $this->next(IndexPage::class);
             }
 
-            return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Request\IndexPage::class);
         }
 
         $this->data['recipient'] = $message->getText();
 
-        return $this->next(RecipientPersonPage::class, ['data' => $this->data])->withBreadcrumbs();
+        return $this->next(RecipientPersonPage::class, ['data' => $this->data]);
     }
 }

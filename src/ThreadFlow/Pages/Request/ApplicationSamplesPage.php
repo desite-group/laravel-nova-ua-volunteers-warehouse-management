@@ -44,15 +44,15 @@ class ApplicationSamplesPage extends AbstractPage
             __("You can also open this application at the Google Dock link") . ' ' . $file['google_dock']
         )->reply();
 
-        return $this->next(RecipientPage::class, ['data' => $this->data])->withBreadcrumbs();
+        return $this->next(RecipientPage::class, ['data' => $this->data]);
     }
 
     protected function handleMessage(IncomingRegularMessageInterface $message)
     {
         if ($message->isText('back')) {
-            return $this->back(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\IndexPage::class);
+            return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Request\IndexPage::class);
         }
 
-        return $this->next(RecipientPage::class, ['data' => $this->data])->withBreadcrumbs();
+        return $this->next(RecipientPage::class, ['data' => $this->data]);
     }
 }
