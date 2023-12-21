@@ -199,7 +199,7 @@ class VolunteersWarehouseBaseSeeder extends Seeder
                 'code' => 'task-creating',
             ],
             [
-                'name' => 'Завантаження/Розвантаження',
+                'name' => 'Залучення до активності',
                 'code' => 'loading',
             ],
             [

@@ -14,7 +14,7 @@ class LoginPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage(__('To authorise, click the send contact button'), [
             Button::contact(__('Send a contact'), 'contact'),
-            Button::contact(__('Back'), 'back')
+            Button::text(__('Back'), 'back')
         ]));
     }
 

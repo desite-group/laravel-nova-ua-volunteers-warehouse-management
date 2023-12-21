@@ -12,7 +12,7 @@ class IndexPage extends AbstractPage
     protected function show()
     {
         $this->reply(new TextOutgoingMessage(__('Write an announcement for all volunteers'), [
-            Button::contact(__('Back'), 'back')
+            Button::text(__('Back'), 'back')
         ]));
     }
 

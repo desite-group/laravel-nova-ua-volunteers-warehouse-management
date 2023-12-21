@@ -12,7 +12,7 @@ class IndexPage extends AbstractPage
 {
     protected function show()
     {
-        $this->reply(new TextOutgoingMessage("Планується завантаження або розвантаження?\n".
+        $this->reply(new TextOutgoingMessage("Планується відправлення, розвантаження чи робота на складі?\n".
             "Напишіть дату та час збору у форматі 01.01.2023 12:00", [
             ['back' => __('Back')]
         ]));

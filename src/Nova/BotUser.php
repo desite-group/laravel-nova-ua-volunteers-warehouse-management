@@ -91,6 +91,7 @@ class BotUser extends Resource
             Boolean::make(__('Active'), 'is_active'),
             Boolean::make(__('Volunteer'), 'is_volunteer'),
             BelongsTo::make(__('Roles'), 'role', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole::class)
+                ->display('nameWithId')
                 ->singularLabel(__('Role')),
 
             HasMany::make(__('Bot Log Messages'), 'log_messages', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\LogBotMessage::class)

@@ -3,6 +3,7 @@
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\Documents;
 
 use SequentSoft\ThreadFlow\Contracts\Messages\Incoming\Regular\IncomingRegularMessageInterface;
+use SequentSoft\ThreadFlow\Keyboard\Button;
 use SequentSoft\ThreadFlow\Messages\Outgoing\Regular\TextOutgoingMessage;
 use SequentSoft\ThreadFlow\Page\AbstractPage;
 
@@ -12,11 +13,11 @@ class IndexPage extends AbstractPage
     {
         $this->reply(new TextOutgoingMessage(__('Choose an action with documents'), [
             [
-                Button::contact(__('New certificate of issue'), 'outgoing'),
-                Button::contact(__('New certificate of receipt'), 'incoming')
+                Button::text(__('New certificate of issue'), 'outgoing'),
+                Button::text(__('New certificate of receipt'), 'incoming')
             ],
-            Button::contact(__('Search a document'), 'search'),
-            Button::contact(__('Back'), 'back')
+            Button::text(__('Search a document'), 'search'),
+            Button::text(__('Back'), 'back')
         ]));
     }
 

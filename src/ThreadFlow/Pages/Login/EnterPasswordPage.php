@@ -13,6 +13,7 @@ use SequentSoft\ThreadFlow\Keyboard\Button;
 class EnterPasswordPage extends AbstractPage
 {
     private $botUser = null;
+    private $password;
     protected $login;
     protected $participant;
 
@@ -23,8 +24,8 @@ class EnterPasswordPage extends AbstractPage
         ];
         if (!$this->validateUserForAuth($this->participant->getId())) {
             $messageArray = [
-                __("The account does not exist yet. To continue registration, create and enter a password"),
-                __("Write down this password, it is required for authorisation and cannot be recovered.")
+                __("The account does not exist yet. To continue registration, create and enter a password") . "\n",
+                __("Write down this password, it is required for authorisation and cannot be recovered")
             ];
         }
         $this->reply(new TextOutgoingMessage(implode("\n", $messageArray), [
@@ -51,17 +52,33 @@ class EnterPasswordPage extends AbstractPage
                     return $this->next(IndexPage::class);
                 }
 
-                if ($this->register($this->participant, $login, $password)) {
-                    return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
+                if (!$this->password) {
+                    $this->password = $password;
+
+                    $messageArray = [
+                        __('To confirm, please enter the password again') . "\n",
+                        __('IMPORTANTLY! Remember this password. You will need it in the future for authorization in the volunteer\'s cabinet'),
+                    ];
+
+                    $this->reply(new TextOutgoingMessage(implode("\n", $messageArray), [
+                        Button::text(__('Back'), 'back')
+                    ]));
+
+                     return;
                 }
+
+                if ($this->password == $password) {
+                    if ($this->register($this->participant, $login, $password)) {
+                        return $this->next(\DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\ThreadFlow\Pages\Cabinet\IndexPage::class);
+                    }
+                }
+
                 return $this->next(IndexPage::class);
             }
 
-            $this->reply(
-                new TextOutgoingMessage(__('Password format is not valid, please try another one.'), [
-                    ['back' => 'Back'],
-                ])
-            );
+            $this->reply(new TextOutgoingMessage(__('Password format is not valid, please try another one.'), [
+                Button::text(__('Back'), 'back')
+            ]));
         }
 
         $this->show();

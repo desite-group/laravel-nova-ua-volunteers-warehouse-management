@@ -23,4 +23,9 @@ class BotRole extends Model
     {
         return $this->belongsToMany(BotPermission::class);
     }
+
+    public function getNameWithIdAttribute()
+    {
+        return $this->id . ' ' . $this->name;
+    }
 }
