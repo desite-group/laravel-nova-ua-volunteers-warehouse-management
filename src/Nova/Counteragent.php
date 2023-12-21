@@ -2,17 +2,10 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
-use Laravel\Nova\Nova;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Trix;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Resource;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-//use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Counteragent as CounteragentModel;
 
 class Counteragent extends WarehouseResource
@@ -77,7 +70,7 @@ class Counteragent extends WarehouseResource
             Text::make(__('Recipient Organization'), 'recipient_organization'),
             Text::make(__('Recipient Address'), 'recipient_address'),
 
-            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+            Trix::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 }),

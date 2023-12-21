@@ -2,17 +2,12 @@
 
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
-use Laravel\Nova\Nova;
+use Laravel\Nova\Fields\Trix;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Resource;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-//use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Category as CategoryModel;
 
 class Category extends WarehouseResource
@@ -75,13 +70,13 @@ class Category extends WarehouseResource
 
             Text::make(__('Title'), 'title'),
 
-            CKEditor5Classic::make(__('Short description'), 'description')
+            Trix::make(__('Short description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
                 ->hideFromIndex(),
 
-            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+            Trix::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 }),

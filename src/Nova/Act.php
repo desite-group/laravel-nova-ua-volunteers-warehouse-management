@@ -3,17 +3,10 @@
 namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Nova;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Trix;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Resource;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-//use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Act as ActModel;
 
 class Act extends WarehouseResource
@@ -81,7 +74,7 @@ class Act extends WarehouseResource
             Text::make(__('Recipient Address'), 'recipient_address'),
             Text::make(__('Recipient Organization'), 'recipient_organization'),
 
-            CKEditor5Classic::make(__('Description'), 'description')
+            Trix::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 }),
@@ -96,7 +89,7 @@ class Act extends WarehouseResource
             BelongsTo::make(__('Application'), 'application', Application::class)
                 ->display('document_number'),
 
-            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+            Trix::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 }),

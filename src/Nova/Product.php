@@ -4,17 +4,12 @@ namespace DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Nova;
+use Laravel\Nova\Fields\Trix;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Resource;
-use NumaxLab\NovaCKEditor5Classic\CKEditor5Classic;
-//use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Models\Product as ProductModel;
 
 class Product extends WarehouseResource
@@ -77,13 +72,13 @@ class Product extends WarehouseResource
 
             Text::make(__('Title'), 'title'),
 
-            CKEditor5Classic::make(__('Description'), 'description')
+            Trix::make(__('Description'), 'description')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
                 ->hideFromIndex(),
 
-            CKEditor5Classic::make(__('Full description'), 'text')
+            Trix::make(__('Full description'), 'text')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 })
@@ -106,7 +101,7 @@ class Product extends WarehouseResource
                 ->step(0.01)
                 ->sortable(),
 
-            CKEditor5Classic::make(__('Internal comment'), 'internal_comment')
+            Trix::make(__('Internal comment'), 'internal_comment')
                 ->displayUsing(function ($value) {
                     return strip_tags($value);
                 }),
