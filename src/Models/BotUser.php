@@ -24,6 +24,7 @@ class BotUser extends Model
         'photo_url',
         'is_active',
         'is_volunteer',
+        'notify_on_new_application',
         'user_id'
     ];
 

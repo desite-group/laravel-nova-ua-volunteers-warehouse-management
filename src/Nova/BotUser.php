@@ -90,6 +90,7 @@ class BotUser extends Resource
 
             Boolean::make(__('Active'), 'is_active'),
             Boolean::make(__('Volunteer'), 'is_volunteer'),
+            Boolean::make(__('Notify on new application'), 'notify_on_new_application'),
             BelongsTo::make(__('Roles'), 'role', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotRole::class)
                 ->display('nameWithId')
                 ->singularLabel(__('Role')),
