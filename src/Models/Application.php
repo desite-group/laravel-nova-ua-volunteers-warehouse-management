@@ -125,6 +125,8 @@ class Application extends Model implements Sortable, HasMedia
         $model->organization_chief = Arr::get($data, 'recipient_person');
         $model->organization_registration = Arr::get($data, 'registration_data');
         $model->recipient = Arr::get($data, 'contact_person');
+        $model->recipient = Arr::get($data, 'contact_person');
+        $model->coordinator = Arr::get($data, 'coordinator');
         $model->phone = Arr::get($data, 'contact_phone');
         $model->additional_text = Arr::get($data, 'description');
         $model->type = Arr::get($data, 'type');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteersWarehouseApplicationsTable extends Migration
+class AddCoordinatorToVolunteersWarehouseApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateVolunteersWarehouseApplicationsTable extends Migration
     public function up()
     {
         Schema::table('applications', function (Blueprint $table) {
-            $table->string('recipient')->nullable();
+            $table->string('coordinator')->nullable();
 
         });
     }
@@ -27,7 +27,7 @@ class CreateVolunteersWarehouseApplicationsTable extends Migration
     public function down()
     {
         Schema::table('applications', function (Blueprint $table) {
-            $table->dropColumn('recipient');
+            $table->dropColumn('coordinator');
         });
     }
 }
