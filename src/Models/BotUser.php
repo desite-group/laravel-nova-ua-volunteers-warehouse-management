@@ -76,6 +76,10 @@ class BotUser extends Model
 
     public function getDisplayedUserNameAttribute(): string
     {
+        if (empty($this->username)) {
+            return $this->fullName;
+        }
+
         return $this->username ?? $this->fullName;
     }
 
