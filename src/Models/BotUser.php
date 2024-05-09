@@ -45,7 +45,7 @@ class BotUser extends Model
 
     public function log_messages()
     {
-        return $this->hasMany(LogBotMessage::class);
+        return $this->hasMany(LogBotMessage::class, 'bot_user_id', 'bot_user_id');
     }
 
     /**

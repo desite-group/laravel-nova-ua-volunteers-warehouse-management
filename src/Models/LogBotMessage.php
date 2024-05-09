@@ -16,6 +16,6 @@ class LogBotMessage extends Model
 
     public function bot_user()
     {
-        return $this->belongsTo(BotUser::class);
+        return $this->belongsTo(BotUser::class, 'bot_user_id', 'bot_user_id');
     }
 }
