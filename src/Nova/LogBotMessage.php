@@ -92,7 +92,7 @@ class LogBotMessage extends Resource
             Textarea::make(__('Message'),  'message'),
             Text::make(__('Page Class'),  'page_class'),
 
-            BelongsTo::make(__('Bot User'), 'bot_user', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser::class)
+            BelongsTo::make(__('Bot User'), 'displayedUserName', \DesiteGroup\LaravelNovaUaVolunteersWarehouseManagement\Nova\BotUser::class)
                 ->singularLabel(__('Bot User')),
 
             Text::make(__('Message'),  'message'),

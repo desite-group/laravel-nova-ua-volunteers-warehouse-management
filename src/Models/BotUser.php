@@ -74,6 +74,11 @@ class BotUser extends Model
         ]));
     }
 
+    public function getDisplayedUserNameAttribute(): string
+    {
+        return $this->username ?? $this->fullName;
+    }
+
     public static function createFromBot(array $data): self
     {
         return self::updateOrCreate([
