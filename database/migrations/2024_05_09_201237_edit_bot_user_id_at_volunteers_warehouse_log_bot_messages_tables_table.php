@@ -13,7 +13,7 @@ class EditBotUserIdAtVolunteersWarehouseLogBotMessagesTablesTable extends Migrat
      */
     public function up()
     {
-        Schema::table('applications', function (Blueprint $table) {
+        Schema::table('log_bot_messages', function (Blueprint $table) {
             $table->string('bot_user_id')->change();
         });
     }
@@ -25,7 +25,7 @@ class EditBotUserIdAtVolunteersWarehouseLogBotMessagesTablesTable extends Migrat
      */
     public function down()
     {
-        Schema::table('applications', function (Blueprint $table) {
+        Schema::table('log_bot_messages', function (Blueprint $table) {
             $table->unsignedInteger('bot_user_id')->change();
         });
     }
