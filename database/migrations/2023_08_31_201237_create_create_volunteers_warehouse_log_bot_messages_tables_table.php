@@ -15,7 +15,7 @@ class CreateCreateVolunteersWarehouseLogBotMessagesTablesTable extends Migration
     {
         Schema::create('log_bot_messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('bot_user_id');
+            $table->string('bot_user_id');
             $table->text('message')->nullable();
             $table->string('page_class')->nullable();
 
